@@ -1,3 +1,15 @@
 # Mash Up Award 10 アプリ
+- トップページ：http://i-and-i.main.jp/API/MAA10app/
 - ライブラリ：twilio-php
-- .ideaは無視して下さい。（エディタの環境設定とかなんで）
+- フレームワーク：Slim
+- .ideaと_noteは無視して下さい。（エディタの環境設定とかなんで）
+- 全てはindex.phpにアクセスされます。
+- model.php でデータのやり取りします。
+- templates/ 以下にViewが入ってます。
+- layout.php はおそらく全てのviewが使うであろう共通部分なので、切り出してます。
+- config.php では設定が記述されてます。
+- 使用DB：mysql（井口）
+- 参考になる：
+    - https://github.com/codeguy/Slim
+    - http://docs.slimframework.com/#Native-Session-Store
+    - http://www.slideshare.net/brtriver/php-14295877 (概念だけ)
