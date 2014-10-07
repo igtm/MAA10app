@@ -1,6 +1,6 @@
 <?php
 require 'twilio-php/Services/Twilio.php';
-require 'define.php';
+require 'config.php';
 
 /*
 $sql = sprintf(SELECT id, name FROM targets WHERE phone=%S,

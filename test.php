@@ -1,6 +1,6 @@
 <?php
 require 'twilio-php/Services/Twilio.php';
-require 'define.php';
+require 'config.php';
 // set your AccountSid and AuthToken from www.twilio.com/user/account
 $tel_to = '+81-80-4481-3217';
 
