@@ -7,5 +7,5 @@ define('DB_NAME','LAA0350474-3tnmww');
 define('USER_NAME','LAA0350474');
 define('PASSWORD','2x2jycy9');
 
-define('DSN','mysql:dbname='.DB_NAME.';host='.HOST.';charset=utf8;');
+define('DSN','mysql:dbname='.DB_NAME.';host='.HOST.';charset=utf8');
 ?>

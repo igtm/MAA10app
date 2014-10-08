@@ -4,7 +4,9 @@ require 'config.php';
 function get_pdo(){
 	try {
 		$pdo = new PDO(DSN,USER_NAME,PASSWORD,
-					array(PDO::ATTR_EMULATE_PREPARES => false));
+					array(PDO::ATTR_EMULATE_PREPARES => false,
+					PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
+		$pdo->query("SET NAMES utf8");
 		return $pdo;
 	} catch (PDOException $e) {
 		exit('データベース接続失敗。'.$e->getMessage());
@@ -50,4 +52,19 @@ function show_projectDetail($id){
 	$return = $stmt -> fetch();
 	return $return;
 }
+
+/* ------------ TEL inbound ------- */
+function get_target_name($phone){
+	$pdo = get_pdo();
+	
+	$stmt = $pdo->prepare('select name from MA10_targets where phone=:phone');
+	$stmt -> bindParam(':phone', $phone, PDO::PARAM_STR);
+	$stmt -> execute();
+	var_dump($stmt);
+	$return = $stmt -> fetch();
+	var_dump($return);
+	return $return;
+}
+
+
 ?>
