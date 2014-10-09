@@ -3,9 +3,16 @@ require '../config.php';
 require '_db.php';
 require '_oath.php';
 require '_getData.php';
+require '_voice.php';
 require '_tel.php';
 
 
+
+
+
+
+
+/* --その他 -- */
 
 //ログインしているかどうか
 function is_login(){
@@ -17,10 +24,5 @@ function is_login(){
 		return false;
 	}
 }
-
-
-
-
-
 
 ?>
