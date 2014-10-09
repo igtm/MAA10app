@@ -1,6 +1,6 @@
 <?php
 require '../lib/twilio-php/Services/Twilio.php';
-require '../app/model.php';
+require '../app/models/model.php';
 
 $message_1 = 'こちらは、ファイトコールです。';
 $message_1 .= 'PINコードを入力して下さい。とりあえず5番で。';

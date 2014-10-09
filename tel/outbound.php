@@ -1,9 +1,8 @@
 <?php
 require '../lib/twilio-php/Services/Twilio.php';
 require '../app/config.php';
-require '../app/model.php';
+require '../app/models/model.php';
 
-// set your AccountSid and AuthToken from www.twilio.com/user/account
 $tel_to = '+818044813217';
 
 

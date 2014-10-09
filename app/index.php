@@ -1,6 +1,6 @@
 <?php 
 require '../lib/Slim/Slim.php';
-require 'model.php';
+require 'models/model.php';
 session_cache_limiter(false);
 session_start();
 

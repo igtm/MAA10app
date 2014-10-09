@@ -1,14 +1,6 @@
 <?php
 require '../lib/twilio-php/Services/Twilio.php';
-/*
-$sql = sprintf(SELECT id, name FROM targets WHERE phone=%S,
-				mysql_real_escape_string($_POST['from']));
-				
-$sql = sprintf(SELECT comp_voice FROM projecs WHERE target_id=%d,
-				mysql_real_escape_string($target_id);
 
-
-*/
 
 $message_first = 'こちらは、ファイトコールです。';
 $message_first .= "イグチトモカツ様より";
