@@ -28,7 +28,7 @@ $app->get('/mypage', function () use($app) {
 	$app->render('mypage.php', array('projects'=> $projects));
 });
 $app->get('/mypage/:id', function ($id) use($app) {
-	$project = show_projectDetail($id);
+	$project = get_projectDetail($id);
 	$app->render('projectDetail.php', array('project'=> $project));
 });
 $app->get('/signup', function () use($app) {
