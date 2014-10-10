@@ -1,6 +1,6 @@
 <?php
 require '../lib/twilio-php/Services/Twilio.php';
-require '../app/config.php';
+require '../app/models/config.php';
 require '../app/models/model.php';
 
 $tel_to = '+818044813217';
