@@ -28,7 +28,8 @@ $app->get('/logout', function () use($app) {
 	$app->render('logout.php');
 });
 $app->get('/login', function () use($app) {
-	$app->render('login.php');
+	$authPear = get_auth_pear();
+	$app->render('login.php',array('authPear'=>$authPear));
 });
 
 $app->run();

@@ -1,5 +1,5 @@
 # Mash Up Award 10 アプリ
-- トップページ：http://i-and-i.main.jp/API/MAA10app/
+- トップページ：http://i-and-i.main.jp/API/MAA10app/app
 - ライブラリ：twilio-php
 - フレームワーク：Slim
 - .ideaと_noteは無視して下さい。（エディタの環境設定とかなんで）

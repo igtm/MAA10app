@@ -1,7 +1,7 @@
 <?php 
 require 'config.php';
 require_once '_db.php';
-require_once '_oath.php';
+require_once '_auth.php';
 require_once '_getData.php';
 require_once '_voice.php';
 require_once '_tel.php';
