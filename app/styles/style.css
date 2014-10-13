@@ -1,0 +1,117 @@
+/* CSS Document */
+
+
+
+body {margin:0; background:#F5F5F5;width:100%}
+ul {margin:0; padding:0;list-style: none;}
+.Container { height:auto; width: 100%; margin: 0 auto;}
+a {text-decoration:none;}
+
+
+
+/*  ----------------------ナビゲーション--------------------------*/
+
+.Nav {
+	height: 40px;
+	width: 100%;
+	background: #363947; // Black Rock
+	font-size:12px;
+}
+.Nav_item {
+	display: block;
+	width: 10%;
+	float: left;
+	color: #fff;
+}
+.Nav_item > a {
+	color: #fff;
+	display:block;
+	line-height:40px;
+	text-align:center;
+	text-decoration: none;
+}
+.Nav_item-right {
+	float: right;	
+}
+
+
+.Lists {
+	width:50%;
+	margin: 130px auto 10px auto;
+	position:relative;
+	background: #fff;
+	border-radius: 20px;
+	padding: 4%;
+}
+.Lists_title {
+	position: absolute;
+	top: -120px;
+	left:0;
+	width: 100%;
+	font-size: 30px;
+	font-weight: bold;
+	text-align: center;
+	color: #b3b3b3;
+	color: rgba(255, 255, 255, 0.3);
+	text-shadow: -1px -1px rgba(0, 0, 0, 0.2);
+	-webkit-text-rendering: optimizeLegibility;
+	-moz-text-rendering: optimizeLegibility;
+	-ms-text-rendering: optimizeLegibility;
+	-o-text-rendering: optimizeLegibility;
+	text-rendering: optimizeLegibility;
+}
+.List {
+	position: relative;
+	padding-bottom: 3%;
+
+}
+.List > a {
+	display:block;
+	position: absolute;
+	top: 0;
+	left: 30px;
+}
+.List_status {
+	
+}
+
+/*  ------------------------------------------------*/
+.NewProjTutorial,.Box {
+	width:50%;
+	background:#fff;
+	border-radius: 20px;
+	padding: 4%;
+	margin: 0 auto;	
+}
+.NewProjTutorial_sentence, .Box_body {
+	padding: 3%;
+}
+/*  ------------------------------------------------*/
+.Reference_icon {
+	width: 50%;
+	margin: 0 auto;
+	font-size: 70%;
+	color: gray;
+}
+
+
+
+/* Media Queries
+----------------------------------------------------------- */
+
+@media only screen and (max-width: 959px) {
+.Nav_item {
+	width: 20%;
+}
+.Lists ,.NewProjTutorial,.Box,.Reference_icon{
+	width:60%;
+}
+}
+@media only screen and (max-width: 767px) { 
+.Nav_item {
+	width: 30%;
+}
+.Lists ,.NewProjTutorial ,.Box, .Reference_icon{
+	width:80%;
+}
+}
