@@ -8,4 +8,6 @@ define('USER_NAME','LAA0350474');
 define('PASSWORD','2x2jycy9');
 
 define('DSN','mysql:dbname='.DB_NAME.';host='.HOST.';charset=utf8');
+define('DSN_DB','mysql://'.USER_NAME.':'.PASSWORD.'@'.HOST.'/'.DB_NAME);
+define('VOICE_URL','http://api.twilio.com/2010-04-01/Accounts/'.ACCOUNT_SID.'/Recordings/');
 ?>
