@@ -15,6 +15,17 @@ var_dump(connect_all_wav($urls))."\n";
 */
 
 
+/*
+connect_all_wavメソッド
+@入力：複数のURLを格納した配列;
+@返り値：pathとplaytime(秒数)
+array(2) {
+  ["path"]=>
+  string(60) "YOUR_PROJECT_DIR/app/models/voices/wav_2014-10-13-Mon@543b711c3c239.wav"
+  ["playtime"]=>
+  float(10.255375)
+}
+*/
 function connect_all_wav($wav_urls){
 
 	$all_wav = new Wavedata();
