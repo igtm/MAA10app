@@ -1,5 +1,6 @@
 <?php
 
+// 参考サイト
 // http://yorozu-1.com/index.php?MEMO/PHP/WAVE
 
 class WaveData {
@@ -138,11 +139,11 @@ class WaveData {
 		// 編集開放
 		unset($dst);
 	}
-
+	
 }
 
 ////// usage sample
-
+/*
 $w1 = new Wavedata();
 $w1->LoadFile('VoipRing.wav');
 $w2 = new Wavedata();
@@ -150,7 +151,13 @@ $w2->LoadFile('Bell.wav');
 
 $w1->WaveCombine($w2);
 $w1->SaveFile('result.wav');
+*/
 
-
+/*
+・二つのwavファイルを合成してわかったこと
+WaveCombineメソッドで合成することはできるが，
+それぞれ再生時間が大きく異なるため，音程にヅレが生じる．
+再生時間が同じwavファイルを合成すれば，音程のヅレがなくなるかも．
+*/
 
 ?>
