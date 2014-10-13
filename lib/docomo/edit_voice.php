@@ -12,6 +12,13 @@ class WaveData {
 	var $chsize	= 0;	// チャンネル数
 	var $freq	= 0;	// サンプリング周波数
 
+	function noData(){
+		if($this->_d == '')
+			return true;
+		else
+			return false;
+	}
+
 	function LoadFile($fn) {
 
 		$this->_d = file_get_contents($fn);
@@ -123,7 +130,7 @@ class WaveData {
 		// データ更新
 		$this->_d = $dst;
 		$this->datasize = strlen($this->_d) - 44;
-
+		
 		// 実際のデータのサイズも更新します
 		$d = pack('V', strlen($this->_d) -  8);
 		$this->_d[4] = $d[0];
@@ -142,6 +149,8 @@ class WaveData {
 	}
 	
 }
+
+
 
 ////// usage sample
 /*
