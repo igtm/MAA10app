@@ -1,12 +1,11 @@
 <?php
 require 'http://i-and-i.main.jp/API/MAA10app/lib/twilio-php/Services/Twilio.php';
 require 'http://i-and-i.main.jp/API/MAA10app/app/models/config.php';
-function h($value){return htmlspecialchars($value,ENT_QUOTES,'UTF-8');}
-$project_id = $_GET['project_id'];
-
 mysql_connect('mysql572.phy.lolipop.jp','LAA0350474','2x2jycy9') or die(mysql_error());
 mysql_select_db('LAA0350474-3tnmww');
 mysql_query('SET NAMES UTF8');
+function h($value){return htmlspecialchars($value,ENT_QUOTES,'UTF-8');}
+$project_id = $_GET['project_id'];
 
 $sql = sprintf("SELECT t.name AS toName, m.name AS fromName, p.comp_voice  FROM MA10_projects p,MA10_targets t, MA10_members m 
 				WHERE t.id=p.target_id AND p.member_id=m.id AND p.id='%s'",mysql_real_escape_string($project_id));
