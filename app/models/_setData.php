@@ -28,7 +28,7 @@ function create_project($table,$member_id){
 		$table = mysql_fetch_assoc($record);
 		if($table['cnt'] ==0){$flag = false;}
 	}
-
+	
 	$sql = sprintf("INSERT INTO MA10_projects
 					(name,member_id,target_id,pin,send_time) VALUES ('%s','%s','%s','%s','%s')",
 					mysql_real_escape_string($pName),mysql_real_escape_string($member_id),
