@@ -52,6 +52,7 @@ class WaveData {
     	file_put_contents($p1, $this->_d);
 	}
 
+	//音声結合のメソッド
 	function WaveConnect(&$p1) {
 
 		// WAVE ファイルのデータ部分だけ結合します
@@ -144,14 +145,22 @@ class WaveData {
 
 ////// usage sample
 /*
-$w1 = new Wavedata();
-$w1->LoadFile('VoipRing.wav');
-$w2 = new Wavedata();
-$w2->LoadFile('Bell.wav');
+//＠音声結合をする＠
 
-$w1->WaveCombine($w2);
+$w1 = new Wavedata();
+$f1 = 'http://api.twilio.com/2010-04-01/Accounts/AC5b10badadd6e95dd38c77c9bf3982201/Recordings/RE8a4e157f6240f3877756dad6eb5e304b';
+$w1->LoadFile($f1);
+$w2 = new Wavedata();
+$f2 = 'http://api.twilio.com/2010-04-01/Accounts/AC5b10badadd6e95dd38c77c9bf3982201/Recordings/RE2d3028f886a4ff3f1221821b369f24de';
+$w2->LoadFile($f2);
+
+//$w1->WaveCombine($w2); //音声合成
+$w1->WaveConnect($w2);
 $w1->SaveFile('result.wav');
+
 */
+
+
 
 /*
 ・二つのwavファイルを合成してわかったこと
