@@ -29,6 +29,7 @@ $app->get('/mypage', function () use($app) {
 	$projects = get_projects($authPear->getAuthData('id'));
 	$app->render('mypage.php', array('authPear'=>$authPear,'projects'=> $projects,'target_name'=>$target_name,'member_name'=>$member_name));
 });
+
 $app->map('/mypage/createProject', function () use($app) {
 	$authPear = get_auth_pear();
 	if(!$authPear->getAuth()){
@@ -45,15 +46,33 @@ $app->map('/mypage/createProject', function () use($app) {
 	}
 	$app->render('createProject.php', array('authPear'=>$authPear,'error_message'=>$error_message));
 })->via('GET', 'POST');
-$app->get('/mypage/:id', function ($id) use($app) {
+
+$app->map('/mypage/:id', function ($id) use($app) {
 	$authPear = get_auth_pear();
 	if(!$authPear->getAuth()){
 		$app -> redirect("/API/MAA10app/app/");
 		exit();
 	}
+	if(!empty($_POST['result_modify'])){ //順番が変更された
+		$result_array = explode(',', $_POST['result_modify']);
+		$result_serialize = serialize($result_array);
+		set_voice_order($result_serialize,$id);
+	}
+	if(!empty($_POST['result_datetime'])){ //時間が変更された
+		$send_time = $_POST['result_datetime'];
+		set_send_time($send_time,$id);
+	}
+	if(!empty($_POST['result_datetime']) || !empty($_POST['result_modify'])){
+		$app -> redirect("http://i-and-i.main.jp/API/MAA10app/app/mypage/".$id."?modified=true");
+	}
+	if($_GET['modified']){ //変更ー＞一旦リダイレクト　更新しても２重登録されない！
+		$modified = true;
+	}
 	$project = get_projectDetail($id);
-	$app->render('projectDetail.php', array('authPear'=>$authPear,'project'=> $project));
-});
+	$voices = get_voices($id,$voice_order);
+	$app->render('projectDetail.php', array('authPear'=>$authPear,'project'=> $project,'voices'=>$voices,'modified'=>$modified));
+})->via('GET', 'POST');
+
 $app->map('/account', function () use($app) {
 	$authPear = get_auth_pear();
 	if(!$authPear->getAuth()){
@@ -62,7 +81,6 @@ $app->map('/account', function () use($app) {
 	}
 	$app->render('account.php',array('authPear'=>$authPear));
 })->via('GET', 'POST');
-
 
 $app->get('/logout', function () use($app) {
 	$authPear = get_auth_pear();
@@ -75,6 +93,7 @@ $app->map('/login', function () use($app) {
 	$authPear = get_auth_pear();
 	$app->render('login.php',array('authPear'=>$authPear));
 })->via('GET', 'POST');
+
 $app->map('/signup', function () use($app) {
 	$authPear = get_auth_pear();
 	$app->render('signup.php',array('authPear'=>$authPear));

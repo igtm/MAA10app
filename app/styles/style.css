@@ -5,7 +5,7 @@
 body {margin:0; background:#F5F5F5;width:100%}
 ul {margin:0; padding:0;list-style: none;}
 .Container { height:auto; width: 100%; margin: 0 auto;}
-a {text-decoration:none;}
+a {text-decoration:none; color:#000000}
 
 
 
@@ -14,7 +14,7 @@ a {text-decoration:none;}
 .Nav {
 	height: 40px;
 	width: 100%;
-	background: #363947; // Black Rock
+	background: #49a7ff; // Black Rock #363947
 	font-size:12px;
 }
 .Nav_item {
@@ -76,14 +76,14 @@ a {text-decoration:none;}
 }
 
 /*  ------------------------------------------------*/
-.NewProjTutorial,.Box {
+.Tutorial,.Box {
 	width:50%;
 	background:#fff;
 	border-radius: 20px;
 	padding: 4%;
 	margin: 0 auto;	
 }
-.NewProjTutorial_sentence, .Box_body {
+.Tutorial_sentence, .Box_body {
 	padding: 3%;
 }
 /*  ------------------------------------------------*/
@@ -94,7 +94,126 @@ a {text-decoration:none;}
 	color: gray;
 }
 
+/* リスト */
+.Voices {
+	background:#fff;
+	width:50%;
+	margin:30px auto;
+	position:relative;
+}
+.Voices_lists{
+ border-bottom: 1px solid #ccc;
+width: 90%;
+position: absolute;
+right: 0;
+ }
+.Voices_list{
+ background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#f0f0f0));
+ background: linear-gradient(#fff, #f0f0f0);
+ border-bottom: 1px solid white;
+ border-top: 1px solid #ccc;
+ height: 44px;
+ margin: 0;
+ 
+ color: #333;
+ display: block;
+ height: 44px;
+ margin: 0;
+ padding: 0 10% 0 10px;
+ overflow: hidden;
+ text-overflow: ellipsis;
+ text-decoration: none;
+ font-weight: bold;
+ white-space: nowrap;
+ line-height: 44px;
+ border-left: 1px solid #ccc;
+ position: relative;
+ 
+ }
+ .Voices_Ranks {
+ border-bottom: 1px solid #ccc;
+ }
+ .Voices_Rank {
+ background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#f0f0f0));
+ background: linear-gradient(#fff, #f0f0f0);
+ border-bottom: 1px solid white;
+ border-top: 1px solid #ccc;
+ height: 44px;
+ margin: 0;
+ 
+ color: #333;
+ display: block;
+ height: 44px;
+ margin: 0;
+ padding: 0 0 0 10px;
+ overflow: hidden;
+ text-overflow: ellipsis;
+ text-decoration: none;
+ font-weight: bold;
+ white-space: nowrap;
+ line-height: 44px;
+ width: 10%;
+	 
+ }
+ .Voices_RanksInfo {
+	 position:absolute;
+	 top:-20px;
+	 left:5px;
+	font-size: 70%;
+	color: gray;
 
+ }
+ .Voices_play {
+	 position:absolute;
+	 right:5%;
+	 top:11px;
+ }
+ .form_modifyVoice {
+	width:50%;
+	margin:20px auto;
+	text-align: center;
+ }
+ 
+ .btn-original {
+    background: #49a7ff;
+	border:0;
+    color:#FFF;
+    width: 100px;
+    padding: 10px 0;
+	-webkit-box-shadow: 0 5px 0 #228dee, 0 5px 10px rgba(0,0,0,.35);
+	-moz-box-shadow: 0 5px 0 #228dee, 0 5px 10px rgba(0,0,0,.35);
+	box-shadow: 0 5px 0 #228dee, 0 5px 10px rgba(0,0,0,.35);
+	transform: translateY(-5px);
+	-moz-transform: translateY(-5px);
+	-webkit-transform: translateY(-5px);
+
+
+}
+.btn-original:disabled {
+	background:#EEE;
+	color: graytext;
+	border-top: 1px solid #DDD;
+    border-left: 1px solid #DDD;
+    border-right: 1px solid #BBB;
+    border-bottom: 1px solid #BBB;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	transform: translateY(0);
+	-moz-transform: translateY(0);
+	-webkit-transform: translateY(0);
+
+}
+.form_btn {
+	margin-top:10px
+}
+
+ 
+ /* ---- 文字に色つける。エラー。成功等。 ------ */
+ 
+ .modified {
+	 color:#3F0;
+ }
 
 /* Media Queries
 ----------------------------------------------------------- */
@@ -103,7 +222,7 @@ a {text-decoration:none;}
 .Nav_item {
 	width: 20%;
 }
-.Lists ,.NewProjTutorial,.Box,.Reference_icon{
+.Lists ,.NewProjTutorial,.Box,.Reference_icon,.Voices,.form_modifyVoice{
 	width:60%;
 }
 }
@@ -111,7 +230,7 @@ a {text-decoration:none;}
 .Nav_item {
 	width: 30%;
 }
-.Lists ,.NewProjTutorial ,.Box, .Reference_icon{
+.Lists ,.NewProjTutorial ,.Box, .Reference_icon,.Voices,.form_modifyVoice{
 	width:80%;
 }
 }

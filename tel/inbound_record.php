@@ -93,7 +93,7 @@ if(empty($RecordingUrl)){
 	}
 }else{
 	$response->say('録音されました。', array("language"=>"ja-jp"));
-	$sql = sprintf("UPDATE MA10_voices SET voice='%s' WHERE CallSid='%s'",
+	$sql = sprintf("UPDATE MA10_voices SET voice='%s' ,created=NOW() WHERE CallSid='%s'",
 	mysql_real_escape_string($RecordingSid),mysql_real_escape_string($callSid));
 	mysql_query($sql) or die(mysql_error());
 }

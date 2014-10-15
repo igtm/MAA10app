@@ -39,7 +39,7 @@ if(!empty($_POST['Digits'])){
 		header("Content-Type : text/xml; charset=utf-8");
 		print $response;
 		// CallSidとproject_idを入力
-		$sql = sprintf("INSERT INTO MA10_voices (project_id, CallSid) VALUES (%d, '%s')",mysql_real_escape_string($table['id']),mysql_real_escape_string($callSid));
+		$sql = sprintf("INSERT INTO MA10_voices (project_id, CallSid,created) VALUES (%d, '%s',NOW())",mysql_real_escape_string($table['id']),mysql_real_escape_string($callSid));
 		$record = mysql_query($sql) or die(mysql_error());
 
 	}else{ // 間違い

@@ -1,8 +1,19 @@
 <?php 
-require_once dirname(__FILE__).'/../../lib/Auth/Auth.php';
-// require 'config.php';
+include_once dirname(__FILE__).'/../../lib/Auth/Auth.php';
+//include_once dirname(__FILE__).'/../../lib/DB/DB.php';
+require 'config.php';
 
 function get_auth_pear(){
+	/*$db = DB::connect(DSN_DB);
+	if (PEAR::isError($db)) {
+		die($db->getMessage());
+	}
+	
+	$db->query('SET NAMES utf8');
+	if (PEAR::isError($db)) {
+		die($db->getMessage());
+	}
+	*/
 	
 	$params = array(
 		"dsn" => DSN_DB,

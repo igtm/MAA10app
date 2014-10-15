@@ -5,6 +5,7 @@ function get_pdo(){
 					array(PDO::ATTR_EMULATE_PREPARES => false,
 					PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
 		$pdo->query("SET NAMES utf8");
+		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		return $pdo;
 	} catch (PDOException $e) {
 		exit('データベース接続失敗。'.$e->getMessage());
