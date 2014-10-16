@@ -3,7 +3,7 @@
 require_once dirname(__FILE__).'/../../lib/docomo/edit_voice.php';
 require_once dirname(__FILE__).'/../../lib/getID3/demos/demo.browse.php';
 
-define("SAVE_WAV_DIR",dirname(__FILE__).'/voices/'); //音声保存先パス
+define("SAVE_WAV_DIR",'voices/'); //音声保存先パス
 
 
 function execute_project($project_id){
@@ -19,7 +19,7 @@ function execute_project($project_id){
 	return array($wav_path,$playtime);
 }
 
-function change_status($project_id,$status){
+function change_status($project_id,$status){ // class
 	$pdo = get_pdo();
 	$stmt = $pdo -> prepare("UPDATE MA10_projects SET status=:status WHERE id=:project_id"
 );
@@ -27,11 +27,11 @@ function change_status($project_id,$status){
 	$stmt -> bindValue(":project_id",$project_id, PDO::PARAM_INT);
 	$stmt -> execute();
 }
-function set_comp_voice($comp_voice,$playtime){
+function set_comp_voice($comp_voice,$playtime){// class
 	$pdo = get_pdo();
 	$stmt = $pdo -> prepare("UPDATE MA10_projects SET comp_voice=:comp_voice,
 	playtime=:playtime WHERE id=:project_id");
-	$stmt -> bindValue(":comp_voice",$comp_voice, PDO::PARAM_INT);
+	$stmt -> bindValue(":comp_voice",$comp_voice, PDO::PARAM_STR);
 	$stmt -> bindValue(":playtime",$playtime, PDO::PARAM_INT);
 	$stmt -> execute();
 }

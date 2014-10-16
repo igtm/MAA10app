@@ -1,5 +1,5 @@
 <?php 
-function get_member($id){
+function get_member($id){ //class
 	$pdo = get_pdo();
 	
 	$stmt = $pdo->prepare('select * from MA10_members where id=:id');
@@ -27,7 +27,7 @@ function get_projectDetail($id){ // Class OK
 	return $return;
 }
 
-function get_voices($project_id){
+function get_voices($project_id){ // class
 	
 	$pdo = get_pdo();
 	$stmt = $pdo -> prepare("SELECT * FROM MA10_voices WHERE project_id=:project_id");
@@ -48,7 +48,7 @@ function get_voices($project_id){
 }
 
 // voiceの順番をbaseArrayに入ってるidで並び替える
-function sort_by_baseArray($array,$baseArray){
+function sort_by_baseArray($array,$baseArray){ // class
 	
 	$a = array();
 	for($i=0;$i<count($baseArray);$i++){
@@ -79,7 +79,7 @@ function get_voice_order($project_id){ //get_voicesから呼ばれる classOK
 	return $result['voice_order'];
 }
 
-function get_memberName($project_id){
+function get_memberName($project_id){//class
 	
 	$pdo = get_pdo();
 	$stmt = $pdo -> prepare("SELECT m.name FROM MA10_projects p,MA10_members m WHERE m.id=p.member_id AND p.id=:id");
@@ -89,7 +89,7 @@ function get_memberName($project_id){
 	return $return['name'];
 }
 
-function get_targetName($id){
+function get_targetName($id){//class
 	
 	$pdo = get_pdo();
 	$stmt = $pdo -> prepare("SELECT name FROM MA10_targets WHERE id=:id");

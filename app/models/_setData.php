@@ -1,9 +1,5 @@
 <?php 
-function create_project($table,$member_id){
-	
-	$pName = $table['project_name'];
-	$tName = $table['target_name'];
-	$phone = $table['phone'];
+function create_project($pName,$tName,$phone,$member_id){
 	
 	$pdo = get_pdo();
 	$stmt = $pdo->prepare("INSERT INTO MA10_targets (name,phone,created) VALUES (:tName,:phone,NOW())");

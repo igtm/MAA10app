@@ -11,7 +11,7 @@ $app->contentType('text/html; charset=utf-8');
 $app->get('/', function () use($app) {
 	$authPear = get_auth_pear();
 	if($authPear->getAuth()){
-		$app -> redirect("/API/MAA10app/app/mypage");
+		$app -> redirect(ROOT_DIR."app/mypage");
 		exit();
 	}
 	$app->render('index.php');
@@ -20,9 +20,11 @@ $app->get('/', function () use($app) {
 $app->get('/mypage', function () use($app) {
 	$authPear = get_auth_pear();
 	if(!$authPear->getAuth()){
-		$app -> redirect("/API/MAA10app/app/");
+		$app -> redirect(ROOT_DIR."app/");
 		exit();
 	}elseif($_GET['created']){
+		//$Target = new Target(h($_GET['target_id']));
+		//$target_name = $Target->get_targetName();
 		$target_name = get_targetName(h($_GET['target_id']));
 		$member_name = $authPear->getUsername();
 	}
@@ -33,12 +35,12 @@ $app->get('/mypage', function () use($app) {
 $app->map('/mypage/createProject', function () use($app) {
 	$authPear = get_auth_pear();
 	if(!$authPear->getAuth()){
-		$app -> redirect("/API/MAA10app/app/");
+		$app -> redirect(ROOT_DIR."app/");
 		exit();
 	}elseif(!empty($_POST)){
 		if(!empty($_POST['project_name'])&&!empty($_POST['target_name'])&&!empty($_POST['phone'])){
-			list($pin,$project_id,$target_id) = create_project($_POST,$authPear->getAuthData('id'));
-			$url = "/API/MAA10app/app/mypage?created=true&pin=".h($pin)."&project_id=".h($project_id)."&target_id=".h($target_id);
+			list($pin,$project_id,$target_id) = create_project($_POST['project_name'],$_POST['target_name'],$_POST['phone'],$authPear->getAuthData('id'));
+			$url = ROOT_DIR."app/mypage?created=true&pin=".h($pin)."&project_id=".h($project_id)."&target_id=".h($target_id);
 			$app -> redirect($url);
 		}else{
 			$error_message = '記入漏れがあります。';
@@ -50,7 +52,7 @@ $app->map('/mypage/createProject', function () use($app) {
 $app->map('/mypage/:id', function ($id) use($app) {
 	$authPear = get_auth_pear();
 	if(!$authPear->getAuth()){
-		$app -> redirect("/API/MAA10app/app/");
+		$app -> redirect(ROOT_DIR."app/");
 		exit();
 	}
 	if(!empty($_POST['result_modify'])){ //順番が変更された
@@ -63,7 +65,7 @@ $app->map('/mypage/:id', function ($id) use($app) {
 		set_send_time($send_time,$id);
 	}
 	if(!empty($_POST['result_datetime']) || !empty($_POST['result_modify'])){
-		$app -> redirect("http://i-and-i.main.jp/API/MAA10app/app/mypage/".$id."?modified=true");
+		$app -> redirect(ROOT_DIR."app/mypage/".$id."?modified=true");
 	}
 	if($_GET['modified']){ //変更ー＞一旦リダイレクト　更新しても２重登録されない！
 		$modified = true;
@@ -76,7 +78,7 @@ $app->map('/mypage/:id', function ($id) use($app) {
 $app->map('/account', function () use($app) {
 	$authPear = get_auth_pear();
 	if(!$authPear->getAuth()){
-		$app -> redirect("/API/MAA10app/app/");
+		$app -> redirect(ROOT_DIR."app/");
 		exit();
 	}
 	$app->render('account.php',array('authPear'=>$authPear));
@@ -86,7 +88,7 @@ $app->get('/logout', function () use($app) {
 	$authPear = get_auth_pear();
 	$authPear -> logout();
 	$authPear -> start();
-	$app -> redirect("/API/MAA10app/app/");
+	$app -> redirect(ROOT_DIR."app/");
 });
 
 $app->map('/login', function () use($app) {
