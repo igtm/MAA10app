@@ -9,15 +9,12 @@ function get_member($id){
 	return $return;
 }
 function get_projects($member_id){
-	$return = array();
 	$pdo = get_pdo();
 	
 	$stmt = $pdo->prepare('select * from MA10_projects WHERE member_id=:id ORDER BY id DESC');
 	$stmt -> bindValue(":id",$member_id, PDO::PARAM_INT);
 	$stmt -> execute();
-	while($row = $stmt -> fetch(PDO::FETCH_ASSOC)) {
-		$return[] = $row;
-	}
+	$return = $stmt -> fetchAll();
 	return $return;
 }
 
@@ -30,7 +27,7 @@ function get_projectDetail($id){
 	return $return;
 }
 
-function get_voices($project_id,$voice_order){
+function get_voices($project_id){
 	
 	$pdo = get_pdo();
 	$stmt = $pdo -> prepare("SELECT * FROM MA10_voices WHERE project_id=:project_id");
