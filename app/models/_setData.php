@@ -41,7 +41,10 @@ function create_project($table,$member_id){
 }
 
 function set_voice_order($result_serialize,$project_id){
-	
+	$pdo = get_pdo();
+	$stmt = $pdo->prepare("UPDATE MA10_projects SET voice_order='%s'  WHERE id=%d");
+	$stmt->
+	/*
 	mysql_connect('mysql572.phy.lolipop.jp','LAA0350474','2x2jycy9') or die(mysql_error());
 	mysql_select_db('LAA0350474-3tnmww');
 	mysql_query('SET NAMES UTF8');
@@ -49,6 +52,7 @@ function set_voice_order($result_serialize,$project_id){
 	$sql = sprintf("UPDATE MA10_projects SET voice_order='%s'  WHERE id=%d"
 					,mysql_real_escape_string($result_serialize),mysql_real_escape_string($project_id));
 	mysql_query($sql) or die(mysql_error());
+	*/
 }
 function set_send_time($send_time,$project_id){
 	

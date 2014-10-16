@@ -1,4 +1,5 @@
 <?php 
+// PDO接続
 class ModelBase{
 	protected $db;
 	protected $table_name;

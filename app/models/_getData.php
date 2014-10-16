@@ -8,7 +8,7 @@ function get_member($id){
 	$return = $stmt -> fetch(PDO::FETCH_ASSOC);
 	return $return;
 }
-function get_projects($member_id){
+function get_projects($member_id){ // Class OK
 	$pdo = get_pdo();
 	
 	$stmt = $pdo->prepare('select * from MA10_projects WHERE member_id=:id ORDER BY id DESC');
@@ -18,7 +18,7 @@ function get_projects($member_id){
 	return $return;
 }
 
-function get_projectDetail($id){
+function get_projectDetail($id){ // Class OK
 	$pdo = get_pdo();
 	$stmt = $pdo -> prepare("SELECT *,p.id,p.name AS project_name, t.name AS target_name FROM MA10_projects p,MA10_targets t WHERE p.id=:id AND p.target_id=t.id");
 	$stmt -> bindValue(":id",$id, PDO::PARAM_INT);
@@ -67,7 +67,7 @@ function sort_by_baseArray($array,$baseArray){
 	
 }
 
-function get_voice_order($project_id){ //get_voicesから呼ばれる
+function get_voice_order($project_id){ //get_voicesから呼ばれる classOK
 
 	$pdo = get_pdo();
 	$stmt = $pdo -> prepare("SELECT voice_order FROM MA10_projects WHERE id=:project_id");
