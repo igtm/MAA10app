@@ -32,12 +32,27 @@
 		}
 		public function get_voice_order(){
 			$sql = sprintf("SELECT voice_order FROM '%s' WHERE id=:id",$this->table_name);
-			$stmt = $pdo -> prepare($sql);
+			$stmt = $this->$db -> prepare($sql);
 			$stmt -> bindValue(":id",$this->id, PDO::PARAM_INT);
 			$stmt -> execute();
 			$result = $stmt -> fetch(PDO::FETCH_ASSOC);
 			$stmt->closeCursor();
 			return $result['voice_order'];
+		}
+		
+		public function set_voice_order($result_serialize){
+			$sql = sprintf("UPDATE '%s' SET voice_order=:result_serialize  WHERE id=:id",$this->table_name);
+			$stmt = $pdo->prepare($sql);
+			$stmt -> bindValue(':result_serialize', $result_serialize, PDO::PARAM_STR);
+			$stmt -> bindValue(':id', $this->id, PDO::PARAM_INT);
+			$stmt -> execute();
+		}
+		public function set_send_time($send_time){
+						$sql = sprintf("UPDATE '%s' SET send_time=:send_time  WHERE id=:id",$this->table_name);
+			$stmt = $pdo->prepare($sql);
+			$stmt -> bindValue(':send_time', $send_time, PDO::PARAM_STR);
+			$stmt -> bindValue(':id', $this->id, PDO::PARAM_INT);
+			$stmt -> execute();
 		}
 	}
 ?>
