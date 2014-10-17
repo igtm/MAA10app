@@ -42,7 +42,12 @@ a {text-decoration:none; color:#000000}
 	margin: 0 auto;
 	text-align: center;
 	font-family: serif;
-	font-size: 20px;	
+	font-size: 20px;
+	width:50%;
+	color:white;
+}
+.Home_login > a {
+	color:#fff;	
 }
 
 
@@ -51,7 +56,7 @@ a {text-decoration:none; color:#000000}
 .Nav {
 	height: 40px;
 	width: 100%;
-	background: #49a7ff; // Black Rock #363947
+	background: #363947; // Black Rock 
 	font-size:12px;
 }
 .Nav_item {
@@ -244,6 +249,13 @@ right: 0;
 .form_btn {
 	margin-top:10px
 }
+
+.login_input {
+	width: 230px;
+	line-height: 30px;
+	font-size: 25px;
+}
+
 
  
  /* ---- 文字に色つける。エラー。成功等。 ------ */

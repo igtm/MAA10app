@@ -29,6 +29,7 @@ $(function() {
         </div>
         <div class="Home_login">
             <?php require '_loginBlock.php';?>
+            <a href="signup">⇒サインアップ</a>
         </div>
     </div>
 </body>
