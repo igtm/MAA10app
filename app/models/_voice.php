@@ -7,37 +7,18 @@ define("SAVE_WAV_DIR",'voices/'); //音声保存先パス
 
 
 function execute_project($project_id){
-	$returns = get_voices($project_id);
+	$Project = new Project($project_id);
+	$returns = $Project->get_voices();
 	$a = array();
 	foreach ($returns as $return){
 		$a[] = VOICE_URL.$return['voice'];
 	}
 	list($wav_path,$playtime) = connect_all_wav($a);
-	set_comp_voice($wav_path,$playtime);
-	change_status($project_id,3);//実行待ち状態
+	$Project->set_comp_voice($comp_voice,$playtime);
+	$Project->change_status(3);//実行待ち状態
 	
 	return array($wav_path,$playtime);
 }
-
-function change_status($project_id,$status){ // class
-	$pdo = get_pdo();
-	$stmt = $pdo -> prepare("UPDATE MA10_projects SET status=:status WHERE id=:project_id"
-);
-	$stmt -> bindValue(":status",$status, PDO::PARAM_INT);
-	$stmt -> bindValue(":project_id",$project_id, PDO::PARAM_INT);
-	$stmt -> execute();
-}
-function set_comp_voice($comp_voice,$playtime){// class
-	$pdo = get_pdo();
-	$stmt = $pdo -> prepare("UPDATE MA10_projects SET comp_voice=:comp_voice,
-	playtime=:playtime WHERE id=:project_id");
-	$stmt -> bindValue(":comp_voice",$comp_voice, PDO::PARAM_STR);
-	$stmt -> bindValue(":playtime",$playtime, PDO::PARAM_INT);
-	$stmt -> execute();
-}
-
-
-
 /*
 /////////SAMPLE_USAGE/////////
 $u1 = 'http://api.twilio.com/2010-04-01/Accounts/AC5b10badadd6e95dd38c77c9bf3982201/Recordings/RE8a4e157f6240f3877756dad6eb5e304b';

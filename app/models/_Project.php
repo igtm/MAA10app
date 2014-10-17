@@ -94,6 +94,7 @@
 			$stmt = $this->db -> prepare($sql);
 			$stmt -> bindValue(":comp_voice",$comp_voice, PDO::PARAM_STR);
 			$stmt -> bindValue(":playtime",$playtime, PDO::PARAM_INT);
+			$stmt -> bindValue(":project_id",$this->id, PDO::PARAM_INT);
 			$stmt -> execute();
 		}
 		
