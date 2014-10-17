@@ -1,8 +1,8 @@
 <?php
 require dirname(__FILE__).'/../lib/twilio-php/Services/Twilio.php';
-require dirname(__FILE__).'/../app/models/model.php';
-mysql_connect('mysql572.phy.lolipop.jp','LAA0350474','2x2jycy9') or die(mysql_error());
-mysql_select_db('LAA0350474-3tnmww');
+require dirname(__FILE__).'/../app/models/config.php';
+mysql_connect(HOST,USER_NAME,PASSWORD) or die(mysql_error());
+mysql_select_db(DB_NAME);
 mysql_query('SET NAMES UTF8');
 function h($value){return htmlspecialchars($value,ENT_QUOTES,'UTF-8');}
 
@@ -99,7 +99,7 @@ if(empty($RecordingUrl)){
 }
 
 	$gather = $response->gather(array('numDigits' => 1,'timeout'=>10));
-	$response->redirect('http://i-and-i.main.jp/API/MAA10app/tel/inbound_record.php?Digits=9',array('method'=>'GET'));
+	$response->redirect(ROOT_DIR.'tel/inbound_record.php?Digits=9',array('method'=>'GET'));
 	$gather->say($mes1, array("language"=>"ja-jp"));
 
 
