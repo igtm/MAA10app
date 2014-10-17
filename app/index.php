@@ -23,9 +23,10 @@ $app->get('/mypage', function () use($app) {
 		$app -> redirect(ROOT_DIR."app/");
 		exit();
 	}elseif($_GET['created']){
-		//$Target = new Target(h($_GET['target_id']));
-		//$target_name = $Target->get_targetName();
-		$target_name = get_targetName(h($_GET['target_id']));
+		$Target = new Target($_GET['target_id']);
+		var_dump($Target);
+		$target_name = $Target->get_targetName();
+		//$target_name = get_targetName(h($_GET['target_id']));
 		$member_name = $authPear->getUsername();
 	}
 	$projects = get_projects($authPear->getAuthData('id'));

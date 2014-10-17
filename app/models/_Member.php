@@ -11,7 +11,7 @@ class Member extends ModelBase{
 			parent::__construct();
 		}
 		public function get_member(){
-			$sql = sprintf("select * from '%s' where id=:id",$this->table_name);
+			$sql = sprintf("select * from %s where id=:id",$this->table_name);
 			$stmt = $this->db->prepare($sql);
 			$stmt -> bindValue(':id', $this->id, PDO::PARAM_INT);
 			$stmt -> execute();

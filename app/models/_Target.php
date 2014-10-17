@@ -5,13 +5,14 @@ class Target extends ModelBase{
 		
 		
 		public function __construct($id = null){
+			parent::__construct();
+
 			if($id != null){
 				$this->id = $id;
 			}
-			parent::__construct();
 		}
 		public function create_target(){
-			$sql = spritf("INSERT INTO '%s' (name,phone,created) VALUES (:tName,:phone,NOW())",$this->table_name);
+			$sql = sprintf("INSERT INTO %s (name,phone,created) VALUES (:tName,:phone,NOW())",$this->table_name);
 			$stmt = $this->db->prepare($sql);
 			$stmt -> bindValue(':tName', $tName, PDO::PARAM_STR);
 			$stmt -> bindValue(':phone', $phone, PDO::PARAM_STR);
@@ -24,7 +25,7 @@ class Target extends ModelBase{
 			return $target_id;
 		}
 		public function get_targetName(){
-			$sql = sprintf("SELECT name FROM '%s' WHERE id=:id",$this->table_name);
+			$sql = sprintf("SELECT name FROM %s WHERE id=:id",$this->table_name);
 			$stmt = $this->db-> prepare($sql);
 			$stmt -> bindValue(":id",$this->id, PDO::PARAM_INT);
 			$stmt -> execute();
