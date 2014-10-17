@@ -11,7 +11,7 @@ class Target extends ModelBase{
 				$this->id = $id;
 			}
 		}
-		public function create_target(){
+		public function create_target($tName,$phone){
 			$sql = sprintf("INSERT INTO %s (name,phone,created) VALUES (:tName,:phone,NOW())",$this->table_name);
 			$stmt = $this->db->prepare($sql);
 			$stmt -> bindValue(':tName', $tName, PDO::PARAM_STR);

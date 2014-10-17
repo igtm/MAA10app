@@ -36,14 +36,6 @@
 			$return = $stmt -> fetch(PDO::FETCH_ASSOC);
 			return $return;
 		}
-		public function get_memberName(){
-			$sql = sprintf("SELECT m.name FROM %s p,MA10_members m WHERE m.id=p.member_id AND p.id=:id",$this->table_name);
-			$stmt = $this->db-> prepare($sql);
-			$stmt -> bindValue(":id",$this->id, PDO::PARAM_INT);
-			$stmt -> execute();
-			$return = $stmt -> fetch(PDO::FETCH_ASSOC);
-			return $return['name'];
-		}
 		public function get_voices(){
 			$stmt = $this->db->prepare("SELECT * FROM MA10_voices WHERE project_id=:project_id");
 			$stmt -> bindValue(":project_id",$this->id, PDO::PARAM_INT);
