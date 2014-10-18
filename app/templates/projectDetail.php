@@ -2,11 +2,11 @@
 <?php $isLogin = true;?>
 <?php $status = array(1 => "編集中","実行待ち","実行中","エラー","完了");?>
 <?php ob_start();?>
-<h1><?php echo h($title);?></h1>
 <?php if($modified):?>
 <div class="modified">変更されました。</div>
 <?php endif;?>
 <div class="Box">
+<p class="Box_title"><?php echo h($title);?></p>
     <ul>
         <li>プロジェクト名：<?php echo h($project['project_name']);?></li>
         <li>ステータス：<?php echo h($status[$project['status']]);?></li>

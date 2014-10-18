@@ -1,4 +1,5 @@
 <?php 
+session_start();
 require dirname(__FILE__).'/../lib/Slim/Slim.php';
 require dirname(__FILE__).'/controllers/controller.php';
 

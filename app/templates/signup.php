@@ -6,8 +6,12 @@
 $error_message = false;
 if(!empty($_POST)){
 	if (!empty($_POST['username']) && !empty($_POST['name']) && !empty($_POST['kana']) && !empty($_POST['email']) && !empty($_POST['password'])){
-		$otherColumn = array('name' => $_POST['name'],'kana'=>$_POST['kana'],'email'=>$_POST['email'],'created'=>'NOW()');
-		$authPear -> addUser($_POST['username'], $_POST['password'], $otherColumn);
+		$Column = array('username'=>$_POST['username'],'password'=>$_POST['password'],'name' => $_POST['name'],'kana'=>$_POST['kana'],'email'=>$_POST['email'],'created'=>'NOW()');
+		if($Member -> isNewUserName($_POST['username'])){
+			$Member -> addMember($Column);
+		}else{
+			$error_message = "このユーザー名は使用できません。";
+		}
 	}else{
 		$error_message = "記入漏れがあります。";
 	}

@@ -8,8 +8,8 @@ function h($value){return htmlspecialchars($value,ENT_QUOTES,'UTF-8');}
 
 //index
 function index($app){
-	$authPear = get_auth_pear();
-	if($authPear->getAuth()){
+	
+	if(isset($_SESSION['MA10_id']) && isset($_SESSION['MA10_time'])){
 		$app -> redirect(ROOT_DIR."app/mypage");
 		exit();
 	}
@@ -17,16 +17,13 @@ function index($app){
 }
 ///mypage
 function mypage($app){
-	$authPear = get_auth_pear();
-	if(!$authPear->getAuth()){
-		$app -> redirect(ROOT_DIR."app/");
-		exit();
-	}elseif($_GET['created']){
+	
+	if(isLogin($app,"app/") && !empty($_GET['created'])){
 		$target_name = get_targetName($_GET['target_id']);
-		$member_name = $authPear->getUsername();
 	}
-	$projects = get_projects($authPear->getAuthData('id'));
-	$app->render('mypage.php', array('authPear'=>$authPear,'projects'=> $projects,'target_name'=>$target_name,'member_name'=>$member_name));
+	$member_name = getUsername($_SESSION['MA10_id']);
+	$projects = get_projects($_SESSION['MA10_id']);
+	$app->render('mypage.php', array('projects'=> $projects,'target_name'=>$target_name,'member_name'=>$member_name));
 }
 function get_projects($member_id){
 	$Project = new Project();
@@ -37,23 +34,26 @@ function get_targetName($id){
 	$Target = new Target($id);
 	return $Target->get_targetName();
 }
+function getUsername($id){
+	$Member = new Member($id);
+	$return = $Member->getMember();
+	return $return['username'];
+}
 
 // mypage/createProject
 function createProject($app){
-	$authPear = get_auth_pear();
-	if(!$authPear->getAuth()){
-		$app -> redirect(ROOT_DIR."app/");
-		exit();
-	}elseif(!empty($_POST)){
+	
+	if(isLogin($app,"app/") && !empty($_POST)){
 		if(!empty($_POST['project_name'])&&!empty($_POST['target_name'])&&!empty($_POST['phone'])){
-			list($pin,$project_id,$target_id) = create_project($_POST['project_name'],$_POST['target_name'],$_POST['phone'],$authPear->getAuthData('id'));
+			list($pin,$project_id,$target_id) = create_project($_POST['project_name'],$_POST['target_name'],$_POST['phone'],$_SESSION['MA10_id']);
 			$url = ROOT_DIR."app/mypage?created=true&pin=".h($pin)."&project_id=".h($project_id)."&target_id=".h($target_id);
 			$app -> redirect($url);
 		}else{
 			$error_message = '記入漏れがあります。';
 		}
 	}
-	$app->render('createProject.php', array('authPear'=>$authPear,'error_message'=>$error_message));	
+	$member_name = getUsername($_SESSION['MA10_id']);
+	$app->render('createProject.php', array('member_name'=>$member_name,'error_message'=>$error_message));	
 }
 function create_project($pName,$tName,$phone,$member_id){
 	
@@ -65,11 +65,8 @@ function create_project($pName,$tName,$phone,$member_id){
 }
 // mypage/:id
 function projectDetail($app,$id){
-	$authPear = get_auth_pear();
-	if(!$authPear->getAuth()){
-		$app -> redirect(ROOT_DIR."app/");
-		exit();
-	}
+	
+	isLogin($app,"app/");
 	if(!empty($_POST['result_modify'])){ //順番が変更された
 		$result_array = explode(',', $_POST['result_modify']);
 		$result_serialize = serialize($result_array);
@@ -85,9 +82,10 @@ function projectDetail($app,$id){
 	if($_GET['modified']){ //変更ー＞一旦リダイレクト　更新しても２重登録されない！
 		$modified = true;
 	}
+	$member_name = getUsername($_SESSION['MA10_id']);
 	$project = get_projectDetail($id);
 	$voices = get_voices($id,$voice_order);
-	$app->render('projectDetail.php', array('authPear'=>$authPear,'project'=> $project,'voices'=>$voices,'modified'=>$modified));
+	$app->render('projectDetail.php', array('member_name'=>$member_name,'project'=> $project,'voices'=>$voices,'modified'=>$modified));
 
 }
 function get_voices($project_id){
@@ -189,30 +187,28 @@ function connect_all_wav($wav_urls){
 
 //account
 function account($app){
-	$authPear = get_auth_pear();
-	if(!$authPear->getAuth()){
-		$app -> redirect(ROOT_DIR."app/");
-		exit();
+	
+	if(isLogin($app,"app/")){
+		$member_name = getUsername($_SESSION['MA10_id']);
+		$app->render('account.php',array('member_name'=>$member_name));
 	}
-	$app->render('account.php',array('authPear'=>$authPear));
 	
 }
 //logout
 function logout($app){
-	$authPear = get_auth_pear();
-	$authPear -> logout();
-	$authPear -> start();
+	$_SESSION = array();
+	session_destroy();
 	$app -> redirect(ROOT_DIR."app/");
 
 }
 //login
 function login($app){
-	$authPear = get_auth_pear();
-	$app->render('login.php',array('authPear'=>$authPear));
+	$Member = new Member();
+	$app->render('login.php',array('Member'=>$Member));
 }
 //signup
 function signup($app){
-	$authPear = get_auth_pear();
-	$app->render('signup.php',array('authPear'=>$authPear));
+	$Member = new Member();
+	$app->render('signup.php',array('Member'=>$Member));
 }
 ?>

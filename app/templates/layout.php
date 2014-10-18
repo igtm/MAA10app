@@ -40,6 +40,23 @@ $(function() {
 		$("#submit-execute").attr("disabled","disabled");
 
   });
+  
+  /* -------Tab----------- */
+   //クリックしたときのファンクションをまとめて指定
+    $('.Tab_block li').click(function() {
+        //.index()を使いクリックされたタブが何番目かを調べ、
+        //indexという変数に代入します。
+        var index = $('.Tab_block li').index(this);
+        //コンテンツを一度すべて非表示にし、
+        $('.Tab_content li').css('display','none');
+        //クリックされたタブと同じ順番のコンテンツを表示します。
+        $('.Tab_content li').eq(index).css('display','block');
+        //一度タブについているクラスselectを消し、
+        $('.Tab_block li').removeClass('Tab_select');
+        //クリックされたタブのみにクラスselectをつけます。
+        $(this).addClass('Tab_select')
+		
+	});
 
   
   
@@ -53,7 +70,7 @@ $(function() {
         	<li class="Nav_item"><a href="/API/MAA10app/app">Home</a></li>
 			<?php if($isLogin){?>
                 <li class="Nav_item Nav_item-right"><a href="/API/MAA10app/app/logout">Log out</a></li>
-                <li class="Nav_item Nav_item-right"><a href="/API/MAA10app/app/account"><?php echo $authPear->getUsername();?>さん</a></li>
+                <li class="Nav_item Nav_item-right"><a href="/API/MAA10app/app/account"><?php echo $member_name;?>さん</a></li>
             <?php }else{?>
                 <li class="Nav_item Nav_item-right"><a href="/API/MAA10app/app/login">ログイン</a></li>
                 <li class="Nav_item Nav_item-right"><a href="/API/MAA10app/app/signup">サインアップ</a></li>
