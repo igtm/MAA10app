@@ -79,7 +79,7 @@ a {text-decoration:none; color:#000000}
 
 .Lists {
 	width:50%;
-	margin: 200px auto 10px auto;
+	margin: 100px auto 10px auto;
 	position:relative;
 	background: #fff;
 	/* border-radius: 20px; */
@@ -87,7 +87,7 @@ a {text-decoration:none; color:#000000}
 }
 .Lists_title {
 	position: absolute;
-	top: -190px;
+	top: -100px;
 	left:0;
 	width: 100%;
 	font-size: 30px;
@@ -118,18 +118,17 @@ a {text-decoration:none; color:#000000}
 }
 
 /*  ------------------------------------------------*/
-.Tutorial,.Box {
+.Tutorial,.Box{
 	position: relative;
 	width:50%;
 	background:#fff;
-	border-radius: 20px;
 	padding: 4%;
 	margin: 100px auto 0;	
 }
 .Tutorial_sentence, .Box_body {
 	padding: 3%;
 }
-.Tutorial_title,.Box_title {
+.Tutorial_title,.Box_title,.Tab_title {
 	position: absolute;
 	top: -100px;
 	left:0;
@@ -287,12 +286,12 @@ right: 0;
 .icon_plus {
 	color: lightgray;
 	position: absolute;
-	top: -155px;
+	top: -65px;
 	right: 10%;
 }
 
 /* ---------------- タブ ----------------------------- */
-.Tab {position:absolute; top: -105px;left:0; width:100%;color:#fff;}
+.Tab {position:relative;width:50%;color:#fff;margin:100px auto 0;}
 .Tab_block{overflow:hidden;}
 .Tab_block li{background:#ccc; padding:5px 25px; float:left; margin-right:1px;}
 .Tab_block li.Tab_select{background:#F69D8D;}
@@ -306,7 +305,7 @@ right: 0;
 .Nav_item {
 	width: 20%;
 }
-.Lists ,.NewProjTutorial,.Box,.Reference_icon,.Voices,.form_modifyVoice{
+.Lists ,.NewProjTutorial,.Box,.Reference_icon,.Voices,.form_modifyVoice,.Tab{
 	width:60%;
 }
 }
@@ -314,7 +313,7 @@ right: 0;
 .Nav_item {
 	width: 30%;
 }
-.Lists ,.NewProjTutorial ,.Box, .Reference_icon,.Voices,.form_modifyVoice{
+.Lists ,.NewProjTutorial ,.Box, .Reference_icon,.Voices,.form_modifyVoice,.Tab{
 	width:80%;
 }
 }

@@ -8,10 +8,8 @@
 	<?php if($_GET['created']):?>
     	<?php require("_tutorial_NewProject.php");?>
     <?php endif;?>
-    <ul class="Lists">
-    <p class="Lists_title">プロジェクト一覧</p>
-    <a href="/API/MAA10app/app/mypage/createProject"><i class="fa fa-plus-square fa-2x icon_plus"></i></a>
     <div class="Tab">
+    <p class="Tab_title">プロジェクト作成</p>
         <ul class="Tab_block">
         <li class="Tab_select">誕生日</li>
         <li>応援！</li>
@@ -25,6 +23,9 @@
             <li class="Tab_hide">この次は抜かさずに飛んで見せますと答えた。</li>
         </ul>
 	</div>
+    <ul class="Lists">
+    <p class="Lists_title">プロジェクト一覧</p>
+    <a href="/API/MAA10app/app/mypage/createProject"><i class="fa fa-plus-square fa-2x icon_plus"></i></a>
 
     <?php foreach($projects as $project):?>
         <li class="List"><span class="List_status"><i class="fa <?php echo $icons[$project['status']];?>"></i></span><a href="mypage/<?php echo $project['id'];?>"><?php echo $project['name'];?></a></li>
