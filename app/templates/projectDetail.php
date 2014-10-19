@@ -21,6 +21,14 @@
     <td>シーン</td>
     <td><?php echo "：".$scene[$project['scene']];?></td>
     </tr>
+    <tr>
+    <td>録音可能秒数</td>
+    <td><?php echo "：".h($project['recordtime']);?></td>
+    </tr>
+    <tr>
+    <td>PINコード</td>
+    <td><?php echo "：".h($project['pin']);?></td>
+    </tr>
     </table>
 </div>
 <div class="form_modifyVoice">
@@ -32,7 +40,7 @@
     	max="<?php echo date("Y-m-d",strtotime("+3 month"))."T".date("H:00",strtotime("+1 hour"));?>" step="1800" value="<?php echo h(str_replace(" ", "T", $project['send_time']));?>">
 <div class="form_btn">
 <button id="submit-modify" class="btn-original" disabled>変更保存</button>
-<button id="submit-execute" class="btn-original" <?php if(empty($project['send_time']) || empty($voices)){?>disabled<?php }?>>実行！</button>
+<button id="submit-execute" class="btn-original" <?php if(empty($project['send_time']) || empty($voices)){?>disabled<?php }?>>音声結合！</button>
 </div>
 </form>
 </div>

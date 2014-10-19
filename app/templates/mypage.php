@@ -39,14 +39,17 @@
             <button class="Tab_button" data-scene="3" data-recordtime="10">作成</button>
             </li>
             <li class="Tab_hide">
-            <p class="Tab_infoText">・自由に録音時間設定が可能<br>・録音１〜６０秒/人</p>
+            <p class="Tab_infoText">・自由に録音時間設定が可能<br>・録音
+            
+                <select name="select_recordtime" id="select_recordtime">
+                    <option value="unselected">未選択</option>
+                    <?php for($i=1;$i<=60;$i++):?>
+                    <option value="<?php echo $i;?>"><?php echo $i;?>秒</option>
+                    <?php endfor;?>
+                </select>
+            
+            秒/人</p>
             <input type="text" name="" class="login_input" data-scene="10" placeholder="プロジェクト名" maxlength="32"required />
-            <select name="select_recordtime" id="select_recordtime">
-                <option value="unselected">未選択</option>
-                <?php for($i=1;$i<=60;$i++):?>
-                <option value="<?php echo $i;?>"><?php echo $i;?>秒</option>
-                <?php endfor;?>
-            </select>
             <button class="Tab_button" data-scene="10" disabled>作成</button>
             </li>
         </form>

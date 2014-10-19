@@ -274,6 +274,7 @@ right: 0;
 	width: 230px;
 	line-height: 30px;
 	font-size: 25px;
+	text-align: center;
 }
 /* ------------ icon --------------------- */
  .icon_status {
@@ -303,10 +304,31 @@ right: 0;
 /* ---------------- タブ ----------------------------- */
 .Tab {position:relative;width:50%;color:#fff;margin:100px auto 0;}
 .Tab_block{overflow:hidden;}
-.Tab_block li{background:#ccc; padding:5px 25px; float:left; margin-right:1px;}
+.Tab_block li{background:#ccc; padding:5px 25px; float:left; margin-right:1px; }
 .Tab_block li.Tab_select{background:#F66D5D;}
-.Tab_content li{background:#F66D5D;  padding:20px;}
+.Tab_content li{
+	background: white;
+	padding: 5px 20px 20px;
+	color: #F66D5D;
+	border: #F66D5D solid 5px;
+	font-family: serif;
+}
 .Tab_hide {display:none;}
+.Tab_infoText {}
+.Tab_button {
+	background: #F66D5D;
+	border: none;
+	color: white;
+	width: 75px;
+	line-height: 30px;
+	position: absolute;
+	font-size:12px;
+}
+#select_recordtime {
+	background: white;
+	color: #F66D5D;
+	border: #F66D5D solid 2px;	
+}
 
 /* Media Queries
 ----------------------------------------------------------- */
@@ -325,5 +347,9 @@ right: 0;
 }
 .Lists ,.Tutorial ,.Box, .Reference_icon,.Voices,.form_modifyVoice,.Tab{
 	width:95%;
+}
+.Tab_block li{
+	font-size: 12px;
+	padding: 5px 5px;
 }
 }

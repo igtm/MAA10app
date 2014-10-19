@@ -86,6 +86,9 @@ $(function() {
 			$(".Tab_button[data-scene=10]").removeAttr("disabled");
 		  }
 	  });
+	    $(document).on("keypress", ".login_input", function(event) {
+		    return event.which !== 13;
+		});
 
 
   
