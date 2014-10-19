@@ -9,7 +9,7 @@ function h($value){return htmlspecialchars($value,ENT_QUOTES,'UTF-8');}
 //index
 function index($app){
 	
-	if(isset($_SESSION['MA10_id']) && isset($_SESSION['MA10_time'])){
+	if(isset($_SESSION['MA10_id']) && $_SESSION['MA10_time'] +3600 >time()){
 		$app -> redirect(ROOT_DIR."app/mypage");
 		exit();
 	}
@@ -19,49 +19,32 @@ function index($app){
 function mypage($app){
 	
 	if(isLogin($app,"app/") && !empty($_GET['created'])){
-		$target_name = get_targetName($_GET['target_id']);
+		//projectが作られた時の変数
 	}
-	$member_name = getUsername($_SESSION['MA10_id']);
-	$projects = get_projects($_SESSION['MA10_id']);
-	$app->render('mypage.php', array('projects'=> $projects,'target_name'=>$target_name,'member_name'=>$member_name));
-}
-function get_projects($member_id){
-	$Project = new Project();
-	$return = $Project->get_projects($member_id);
-	return $return;
-}
-function get_targetName($id){
-	$Target = new Target($id);
-	return $Target->get_targetName();
-}
-function getUsername($id){
-	$Member = new Member($id);
-	$return = $Member->getMember();
-	return $return['username'];
-}
-
-// mypage/createProject
-function createProject($app){
-	
-	if(isLogin($app,"app/") && !empty($_POST)){
-		if(!empty($_POST['project_name'])&&!empty($_POST['target_name'])&&!empty($_POST['phone'])){
-			list($pin,$project_id,$target_id) = create_project($_POST['project_name'],$_POST['target_name'],$_POST['phone'],$_SESSION['MA10_id']);
-			$url = ROOT_DIR."app/mypage?created=true&pin=".h($pin)."&project_id=".h($project_id)."&target_id=".h($target_id);
+	if(!empty($_POST)){
+		if(!empty($_POST['project_name'])&&!empty($_POST['scene'])&&!empty($_POST['recordtime'])){
+			$Project = new Project();
+			list($pin,$project_id) = $Project->create_project($_SESSION['MA10_id'],$_POST['project_name'],$_POST['scene'],$_POST['recordtime']);
+			$url = ROOT_DIR."app/mypage?created=true&pin=".h($pin)."&project_id=".h($project_id)."&recordtime=".h($_POST['recordtime']);
 			$app -> redirect($url);
 		}else{
 			$error_message = '記入漏れがあります。';
 		}
 	}
 	$member_name = getUsername($_SESSION['MA10_id']);
-	$app->render('createProject.php', array('member_name'=>$member_name,'error_message'=>$error_message));	
+	$projects = get_projects($_SESSION['MA10_id']);
+	$app->render('mypage.php', array('projects'=> $projects,'target_name'=>$target_name,'member_name'=>$member_name,'error_message'=>$error_message));
 }
-function create_project($pName,$tName,$phone,$member_id){
-	
-	$Target = new Target();
-	$target_id = $Target->create_target($tName,$phone);
+function get_projects($member_id){
 	$Project = new Project();
-	list($pin,$project_id) = $Project->create_project($pName,$member_id,$target_id);
-	return array($pin,$project_id,$target_id);
+	$return = $Project->get_projects($member_id);
+	return $return;
+}
+
+function getUsername($id){
+	$Member = new Member($id);
+	$return = $Member->getMember();
+	return $return['username'];
 }
 // mypage/:id
 function projectDetail($app,$id){
@@ -90,13 +73,11 @@ function projectDetail($app,$id){
 }
 function get_voices($project_id){
 	$Project = new Project($project_id);
-	$return = $Project->get_voices();
-	return $return;
+	return $Project->get_voices();
 }
 function get_projectDetail($id){
 	$Project = new Project($id);
-	$return = $Project->get_projectDetail();
-	return $return;
+	return $Project->get_projectDetail();
 }
 function set_voice_order($result_serialize,$project_id){ 
 	$Project = new Project($project_id);

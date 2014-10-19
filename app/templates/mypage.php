@@ -1,7 +1,9 @@
 <?php $title = 'マイページ';?>
 <?php $isLogin = true;?>
 <?php $icons = array(1 => "fa-edit","fa-clock-o","fa-caret-square-o-right","fa-exclamation-triangle","fa-check");?>
+<?php $scene = array(1 => "<i class='fa fa-birthday-cake scene_birthday'></i>",2=>"<i class='fa fa-flag-o scene_cheerup'></i>",3=>"<i class='fa fa-child scene_farewell'></i>",10=>"<i class='fa fa-file-audio-o scene_original'></i>");?>
 <?php ob_start();?>
+<?php echo $error_message;?>
 <?php if($execute):?>
 <div class="modified">プロジェクトが実行待ち状態に入りました！</div>
 <?php endif;?>
@@ -11,24 +13,50 @@
     <div class="Tab">
     <p class="Tab_title">プロジェクト作成</p>
         <ul class="Tab_block">
-        <li class="Tab_select">誕生日</li>
-        <li>応援！</li>
-        <li>別れ</li>
-        <li>オリジナル</li>
+        <li class="Tab_select"><i class='fa fa-birthday-cake'></i> 誕生日</li>
+        <li><i class='fa fa-flag-o'></i> 応援！</li>
+        <li><i class='fa fa-child'></i> 別れ</li>
+        <li><i class='fa fa-file-audio-o'></i> オリジナル</li>
         </ul>
         <ul class="Tab_content">
-            <li>親譲りの無鉄砲で小供の時から損ばかりしている。</li>
-            <li class="Tab_hide">なぜそんな無闇をしたと聞く人があるかも知れぬ。</li>
-            <li class="Tab_hide">新築の二階から首を出していたら、同級生の一人が冗談に</li>
-            <li class="Tab_hide">この次は抜かさずに飛んで見せますと答えた。</li>
+        <form method="POST">
+        <input type="hidden" id="Tab_hidden_project_name" name="project_name"/>
+        <input type="hidden" id="Tab_hidden_scene" name="scene"/>
+        <input type="hidden" id="Tab_hidden_recordtime" name="recordtime"/>
+            <li>
+            <p class="Tab_infoText">・「お誕生日、おめでとう。」の一言のみを届ける、シンプルなプロジェクトです。<br>・録音３秒以内/人</p>
+            <input type="text" name="" class="login_input" data-scene="1" placeholder="プロジェクト名" maxlength="32" required />
+            <button class="Tab_button" data-scene="1" data-recordtime="3">作成</button>
+            </li>
+            <li class="Tab_hide">
+            <p class="Tab_infoText">・みんなの応援の言葉を届けよう<br>・録音５秒以内/人</p>
+            <input type="text" name="" class="login_input" data-scene="2" placeholder="プロジェクト名" maxlength="32" required/>
+            <button class="Tab_button" data-scene="2" data-recordtime="5">作成</button>
+            </li>
+            <li class="Tab_hide">
+            <p class="Tab_infoText">・みんなの言葉を届けよう<br>・録音１０秒以内/人</p>
+            <input type="text" name="" class="login_input" data-scene="3" placeholder="プロジェクト名" maxlength="32" required />
+            <button class="Tab_button" data-scene="3" data-recordtime="10">作成</button>
+            </li>
+            <li class="Tab_hide">
+            <p class="Tab_infoText">・自由に録音時間設定が可能<br>・録音１〜６０秒/人</p>
+            <input type="text" name="" class="login_input" data-scene="10" placeholder="プロジェクト名" maxlength="32"required />
+            <select name="select_recordtime" id="select_recordtime">
+                <option value="unselected">未選択</option>
+                <?php for($i=1;$i<=60;$i++):?>
+                <option value="<?php echo $i;?>"><?php echo $i;?>秒</option>
+                <?php endfor;?>
+            </select>
+            <button class="Tab_button" data-scene="10" disabled>作成</button>
+            </li>
+        </form>
         </ul>
 	</div>
     <ul class="Lists">
     <p class="Lists_title">プロジェクト一覧</p>
-    <a href="/API/MAA10app/app/mypage/createProject"><i class="fa fa-plus-square fa-2x icon_plus"></i></a>
 
     <?php foreach($projects as $project):?>
-        <li class="List"><span class="List_status"><i class="fa <?php echo $icons[$project['status']];?>"></i></span><a href="mypage/<?php echo $project['id'];?>"><?php echo $project['name'];?></a></li>
+        <li class="List"><span class="List_status"><?php echo $scene[$project['scene']];?><i class="fa <?php echo $icons[$project['status']];?> icon_status"></i></span><a href="mypage/<?php echo $project['id'];?>"><?php echo $project['name'];?></a></li>
     <?php endforeach;?>
     </ul>
     <div class="Reference_icon"><?php $a = '<i class="fa '; $b = '"></i>';?>

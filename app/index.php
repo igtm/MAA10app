@@ -12,12 +12,8 @@ $app->get('/', function () use($app) {
 	index($app);
 });
 
-$app->get('/mypage', function () use($app) {
+$app->map('/mypage', function () use($app) {
 	mypage($app);
-});
-
-$app->map('/mypage/createProject', function () use($app) {
-	createProject($app);
 })->via('GET', 'POST');
 
 $app->map('/mypage/:id', function ($id) use($app) {

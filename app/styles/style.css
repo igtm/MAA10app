@@ -12,6 +12,9 @@ a {text-decoration:none; color:#000000}
 	background-size:cover;
 	height:100%;
 }
+.Home_title {
+	text-align:center;
+}
 .Home_mask {
 	background:#363947;
 	position:absolute;
@@ -111,7 +114,7 @@ a {text-decoration:none; color:#000000}
 	display:block;
 	position: absolute;
 	top: 0;
-	left: 30px;
+	left: 65px;
 }
 .List_status {
 	
@@ -272,7 +275,22 @@ right: 0;
 	line-height: 30px;
 	font-size: 25px;
 }
-
+/* ------------ icon --------------------- */
+ .icon_status {
+	position: absolute;
+	top: 6px;
+	left: 30px;
+ }
+ .scene_birthday {
+	 color:#e74c3c;
+ }
+ .scene_cheerup {
+	 color:#3498db;
+ }
+ .scene_farewell {
+	 color:#2ecc71;
+ }
+ 
 
  
  /* ---- 文字に色つける。エラー。成功等。 ------ */
@@ -281,21 +299,13 @@ right: 0;
 	 color:#3F0;
  }
 
-/*  --------------- アイコン --------------------- */
-
-.icon_plus {
-	color: lightgray;
-	position: absolute;
-	top: -65px;
-	right: 10%;
-}
 
 /* ---------------- タブ ----------------------------- */
 .Tab {position:relative;width:50%;color:#fff;margin:100px auto 0;}
 .Tab_block{overflow:hidden;}
 .Tab_block li{background:#ccc; padding:5px 25px; float:left; margin-right:1px;}
-.Tab_block li.Tab_select{background:#F69D8D;}
-.Tab_content li{background:#F69D8D;  padding:20px;}
+.Tab_block li.Tab_select{background:#F66D5D;}
+.Tab_content li{background:#F66D5D;  padding:20px;}
 .Tab_hide {display:none;}
 
 /* Media Queries
@@ -305,15 +315,15 @@ right: 0;
 .Nav_item {
 	width: 20%;
 }
-.Lists ,.NewProjTutorial,.Box,.Reference_icon,.Voices,.form_modifyVoice,.Tab{
-	width:60%;
+.Lists ,.Tutorial,.Box,.Reference_icon,.Voices,.form_modifyVoice,.Tab{
+	width:70%;
 }
 }
 @media only screen and (max-width: 767px) { 
 .Nav_item {
 	width: 30%;
 }
-.Lists ,.NewProjTutorial ,.Box, .Reference_icon,.Voices,.form_modifyVoice,.Tab{
-	width:80%;
+.Lists ,.Tutorial ,.Box, .Reference_icon,.Voices,.form_modifyVoice,.Tab{
+	width:95%;
 }
 }

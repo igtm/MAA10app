@@ -57,6 +57,36 @@ $(function() {
         $(this).addClass('Tab_select')
 		
 	});
+  /* ------- Tab form ----------- */
+  // POST: project_name , scene , recordtime
+    $('.Tab_button').click(function(e) {
+		e.preventDefault();
+		var scene = $(this).attr("data-scene");
+		var project_name = $(".login_input[data-scene="+scene+"]").val();
+		if(project_name == ''){alert("プロジェクト名が記入されていません。");
+		return ;}
+		if(scene == 10){
+			if($("#select_recordtime").val() == 'unselected'){
+				alert("プロジェクト名が記入されていません。");
+				return;	
+			}
+			var recordtime = $("#select_recordtime").val();
+		}else{
+			var recordtime = $(this).attr("data-recordtime");
+		}
+		$("#Tab_hidden_project_name").val(project_name);
+		$("#Tab_hidden_scene").val(scene);
+		$("#Tab_hidden_recordtime").val(recordtime);
+	    $("form").submit();
+	});
+	  $("#select_recordtime").change(function() {
+		  if($(this).val()=='unselected'){
+			$(".Tab_button[data-scene=10]").attr("disabled","disabled");
+		  }else{
+			$(".Tab_button[data-scene=10]").removeAttr("disabled");
+		  }
+	  });
+
 
   
   

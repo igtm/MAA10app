@@ -1,20 +1,27 @@
 <?php $title = 'プロジェクト';?>
 <?php $isLogin = true;?>
 <?php $status = array(1 => "編集中","実行待ち","実行中","エラー","完了");?>
+<?php $scene = array(1 => "誕生日<i class='fa fa-birthday-cake'></i>",2=>"応援！",3=>"別れ",10=>"オリジナル");?>
 <?php ob_start();?>
 <?php if($modified):?>
 <div class="modified">変更されました。</div>
 <?php endif;?>
 <div class="Box">
 <p class="Box_title"><?php echo h($title);?></p>
-    <ul>
-        <li>プロジェクト名：<?php echo h($project['project_name']);?></li>
-        <li>ステータス：<?php echo h($status[$project['status']]);?></li>
-        <li>ターゲット：<?php echo h($project['target_name']);?></li>
-        <li>フリガナ：<?php echo h($project['kana']);?></li>
-        <li>電話番号：<?php echo h($project['phone']);?></li>
-                   
-    </ul>
+	<table>
+    <tr>
+    <td>プロジェクト名</td>
+    <td><?php echo "：".h($project['name']);?></td>
+    </tr>
+    <tr>
+    <td>ステータス</td>
+    <td><?php echo "：".h($status[$project['status']]);?></td>
+    </tr>
+    <tr>
+    <td>シーン</td>
+    <td><?php echo "：".$scene[$project['scene']];?></td>
+    </tr>
+    </table>
 </div>
 <div class="form_modifyVoice">
 <form method="POST">
@@ -30,7 +37,6 @@
 </form>
 </div>
 <div class="Voices">
-
 	<ul class="Voices_lists">
     <?php if(empty($voices)){?>
         <li class="Voices_list">録音された音声がありません。</li>
@@ -39,7 +45,7 @@
 		<?php foreach ($voices as $voice):?>
     	<li class="Voices_list" id="<?php echo h($voice['id']);?>" data-voice="<?php echo $voice['voice'];?>">
 			<?php echo $voice['id'].$voice['voice'].$voice['created'];?>
-            <a href="http://api.twilio.com/2010-04-01/Accounts/AC1a5cb11fc93ebd4c8df75d7b056e62bb/Recordings/<?php echo h($voice['voice']);?>"><i class="fa fa-caret-square-o-right Voices_play" style="font-size:22px;"></i></a>
+            <a href="<?php echo VOICE_URL.h($voice['voice']);?>"><i class="fa fa-caret-square-o-right Voices_play" style="font-size:22px;"></i></a>
         </li>
 		<?php $i++;?>
         <?php endforeach;?>

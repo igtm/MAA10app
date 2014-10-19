@@ -27,13 +27,9 @@
 		}
 		
 		public function get_projectDetail(){
-			
-			$sql = sprintf("SELECT *,p.id,p.name AS project_name, t.name AS target_name FROM %s p,MA10_targets t WHERE p.id=:id AND p.target_id=t.id",$this->table_name);
-			$stmt = $this->db -> prepare($sql);
-			$stmt -> bindValue(":id",$this->id, PDO::PARAM_INT);
-			$stmt -> execute();
-			$return = $stmt -> fetch(PDO::FETCH_ASSOC);
-			return $return;
+			$params = array("id"=>$this->id);
+			$return = $this->select("*",$params);
+			return $return[0];
 		}
 		public function get_voices(){
 			$stmt = $this->db->prepare("SELECT * FROM MA10_voices WHERE project_id=:project_id");
@@ -69,16 +65,17 @@
 			$stmt -> execute();
 		}
 		
-		public function create_project($pName,$member_id,$target_id){
+		public function create_project($member_id,$pName,$scene,$recordtime){
 			
 			$pin = $this->create_pin();
-			$sql = sprintf("INSERT INTO %s (name,member_id,target_id,pin,created) 
-			VALUES (:pName,:member_id,:target_id,:pin,NOW())",$this->table_name);
+			$sql = sprintf("INSERT INTO %s (name,member_id,pin,scene,recordtime,created) 
+			VALUES (:pName,:member_id,:pin,:scene,:recordtime,NOW())",$this->table_name);
 			$stmt = $this->db->prepare($sql);
 			$stmt -> bindValue(':pName', $pName, PDO::PARAM_STR);
 			$stmt -> bindValue(':member_id', $member_id, PDO::PARAM_INT);
-			$stmt -> bindValue(':target_id', $target_id, PDO::PARAM_INT);
 			$stmt -> bindValue(':pin', $pin, PDO::PARAM_INT);
+			$stmt -> bindValue(':scene', $scene, PDO::PARAM_INT);
+			$stmt -> bindValue(':recordtime', $recordtime, PDO::PARAM_INT);
 			$stmt -> execute();
 			// project_id 取得　（autoIncreamentなので）
 			$stmt = $this->db->query("SELECT LAST_INSERT_ID()");

@@ -12,7 +12,7 @@ if(!empty($_POST['Digits'])){
 	$pin = $_POST['Digits'];
 	$callSid = $_POST['CallSid'];
 	
-	$sql = sprintf("SELECT p.id,p.pin,t.name,p.status FROM MA10_projects p, MA10_targets t WHERE p.target_id=t.id AND p.pin=%d",mysql_real_escape_string($pin));
+	$sql = sprintf("SELECT id,pin,status,scene,recordtime FROM MA10_projects WHERE pin=%d",mysql_real_escape_string($pin));
 	$record = mysql_query($sql) or die(mysql_error());
 	$table = mysql_fetch_assoc($record);
 	
@@ -23,17 +23,18 @@ if(!empty($_POST['Digits'])){
 		$response->say($message_2, array("language"=>"ja-jp"));	
 		header("Content-Type : text/xml; charset=utf-8");
 		print $response;
-	}elseif($table){ // 正解
+	}elseif(!empty($table)){ // 正解
+		'「誕生日、おめでとう！」。の一言を'
 		$message_2 = 'ピンコードが確認されました。';
 		$message_2 .= 'それでは、お名前と、';
-		$message_2 .= h($table['name']).'さんへのメッセージを、';
-		$message_2 .= '７秒以内で';
+		$message_2 .= INBOUND_BIRTHDAY;
+		$message_2 .= h($table['recordtime']).'秒以内で';
 		$message_2 .= '録音して下さい。';
 
 		$response->say($message_2, array("language"=>"ja-jp"));	
 		$response->record(array(
 						  'action' => 'inbound_record.php',
-						  'maxLength' => 7,
+						  'maxLength' => h($table['recordtime']),
 						  'method' => "	POST"
 						));
 		header("Content-Type : text/xml; charset=utf-8");
