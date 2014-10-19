@@ -28,18 +28,44 @@ $(function() {
   	  $("#result_datetime").val($("#datetime").val().replace("T", " "));
 	  $("form").submit();
   });
-  $("#submit-execute").click(function() {
-	  // animation
-	  $(this).css({"transform":"none","-moz-transform":"none","-webkit-transform":"none"});
-	  $(this).css({"box-shadow":"none","-moz-box-shadow":"none","-webkit-box-shadow":"none"});
-
-	  alert("まだできてへんねん、、");
-  });
   $("#datetime").change(function() {
 		$("#submit-modify").removeAttr("disabled");
 		$("#submit-execute").attr("disabled","disabled");
 
   });
+  /* ------- 結合！ ----------- */
+  
+  $("#submit-execute").click(function(e) {
+	  e.preventDefault();
+	  if(confirm("音声結合しますか？※通信状態が良い場所で行って下さい")){
+	  // animation
+	  $(this).css({"transform":"none","-moz-transform":"none","-webkit-transform":"none"});
+	  $(this).css({"box-shadow":"none","-moz-box-shadow":"none","-webkit-box-shadow":"none"});
+	  $.ajax({
+		  type:"POST",
+		  url:"<?php echo ROOT_DIR."async/combine.php";?>",
+		  data:{member_id:<?php echo h($_SESSION['MA10_id']);?>,
+		  		project_id:<?php echo h($project['id']);?>}
+	  	  }).done(function(data, status, xhr) {
+ 			// 通信成功時の処理
+			alert("成功");
+			alert(data);
+			alert(status);
+			alert(xhr);
+		  }).fail(function(xhr, status, error) {
+			 // 通信失敗時の処理
+			alert("失敗");
+			alert(xhr);
+			alert(status);
+			alert(error);
+		  }).always(function(arg1, status, arg2) {
+			// 通信完了時の処理
+			alert("終了");
+		  });
+		
+	  }
+  });
+
   
   /* -------Tab----------- */
    //クリックしたときのファンクションをまとめて指定
@@ -86,12 +112,10 @@ $(function() {
 			$(".Tab_button[data-scene=10]").removeAttr("disabled");
 		  }
 	  });
+	  // enterの無効化
 	    $(document).on("keypress", ".login_input", function(event) {
 		    return event.which !== 13;
 		});
-
-
-  
   
 });
 </script>

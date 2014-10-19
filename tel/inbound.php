@@ -24,7 +24,7 @@ if(!empty($_POST['Digits'])){
 		header("Content-Type : text/xml; charset=utf-8");
 		print $response;
 	}elseif(!empty($table)){ // 正解
-		'「誕生日、おめでとう！」。の一言を'
+		
 		$message_2 = 'ピンコードが確認されました。';
 		$message_2 .= 'それでは、お名前と、';
 		$message_2 .= INBOUND_BIRTHDAY;

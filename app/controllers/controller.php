@@ -3,7 +3,7 @@ require dirname(__FILE__).'/../models/model.php';
 require_once dirname(__FILE__).'/../../lib/docomo/edit_voice.php';
 require_once dirname(__FILE__).'/../../lib/getID3/demos/demo.browse.php';
 
-define("SAVE_WAV_DIR",'../models/voices/'); //音声保存先パス
+define("SAVE_WAV_DIR",'/home/users/2/main.jp-i-and-i/web/API/MAA10app/app/models/voices/'); //音声保存先パス
 function h($value){return htmlspecialchars($value,ENT_QUOTES,'UTF-8');}
 
 //index
@@ -95,8 +95,8 @@ function execute_project($project_id){ // 未使用!!!
 		$a[] = VOICE_URL.$return['voice'];
 	}
 	list($wav_path,$playtime) = connect_all_wav($a);
-	$Project->set_comp_voice($comp_voice,$playtime);
-	$Project->change_status(3);//実行待ち状態
+	$Project->set_comp_voice($wav_path,$playtime);
+	//$Project->change_status(3);//実行待ち状態
 	
 	return array($wav_path,$playtime);
 }

@@ -44,6 +44,17 @@
 			}
 			return $return;
 		}
+		public function is_ownProject($member_id){
+			$sql = sprintf('select * from %s WHERE member_id=:member_id AND id=:id ORDER BY id DESC',$this->table_name);
+			$stmt = $this->db->prepare($sql);
+			$stmt -> bindValue(":member_id",$member_id, PDO::PARAM_STR);
+			$stmt -> bindValue(":id",$this->id, PDO::PARAM_STR);
+			$stmt -> execute();
+			$return = $stmt -> fetch();
+			if($return){
+				return true;
+			}else{return false;}
+		}
 		
 /* ------- SET DATA --------- */
 
