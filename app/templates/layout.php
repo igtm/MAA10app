@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <link rel="stylesheet" type="text/css" href="/API/MAA10app/app/styles/style.css">
 <link rel="stylesheet" type="text/css" href="/API/MAA10app/app/styles/font-awesome.min.css">
+<link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css" rel="stylesheet" />
 <script type="text/javascript"
   src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 <script type="text/javascript"
@@ -33,8 +34,19 @@ $(function() {
 		$("#submit-execute").attr("disabled","disabled");
 
   });
+  /* ------- ダイアログボックス ----------- */
+   	$("#dialog").dialog({
+		//autoOpen: false,
+		modal: true	,
+		buttons: {
+　　　　"OK": function(){
+	　　　　$(this).dialog('close');
+	　　　　}
+　　　  }
+	});
+
   /* ------- 結合！ ----------- */
-  
+
   $("#submit-execute").click(function(e) {
 	  e.preventDefault();
 	  if(confirm("音声結合しますか？※通信状態が良い場所で行って下さい")){
@@ -48,6 +60,7 @@ $(function() {
 		  		project_id:<?php echo h($project['id']);?>}
 	  	  }).done(function(data, status, xhr) {
  			// 通信成功時の処理
+			$('#dialog').dialog('open');
 			alert("成功");
 			alert(data);
 			alert(status);

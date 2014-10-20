@@ -1,20 +1,16 @@
 <?php
 require dirname(__FILE__).'/../lib/twilio-php/Services/Twilio.php';
-require dirname(__FILE__).'/../app/models/config.php';
-mysql_connect(HOST,USER_NAME,PASSWORD) or die(mysql_error());
-mysql_select_db(DB_NAME);
-mysql_query('SET NAMES UTF8');
-
+require dirname(__FILE__).'/../app/models/model.php';
+$sceneArray = array(1 => INBOUND_BIRTHDAY,2=>INBOUND_CHEERUP,3=>INBOUND_FAREWELL,10=>INBOUND_ORIGINAL);
 function h($value){return htmlspecialchars($value,ENT_QUOTES,'UTF-8');}
 $response = new Services_Twilio_Twiml();
 $cnt = 1;
 if(!empty($_POST['Digits'])){
-	$pin = $_POST['Digits'];
+	$pin = 55050;//$_POST['Digits'];
 	$callSid = $_POST['CallSid'];
 	
-	$sql = sprintf("SELECT id,pin,status,scene,recordtime FROM MA10_projects WHERE pin=%d",mysql_real_escape_string($pin));
-	$record = mysql_query($sql) or die(mysql_error());
-	$table = mysql_fetch_assoc($record);
+	$Project = new Project();
+	$table = $Project->get_projectDetailByPin($pin);
 	
 	if($table['status'] != 1 && !empty($table)){ // 既に実行済み
 		$message_2 = '申し訳ございません。';
@@ -27,7 +23,7 @@ if(!empty($_POST['Digits'])){
 		
 		$message_2 = 'ピンコードが確認されました。';
 		$message_2 .= 'それでは、お名前と、';
-		$message_2 .= INBOUND_BIRTHDAY;
+		$message_2 .= $sceneArray[$table['scene']];
 		$message_2 .= h($table['recordtime']).'秒以内で';
 		$message_2 .= '録音して下さい。';
 
@@ -40,8 +36,8 @@ if(!empty($_POST['Digits'])){
 		header("Content-Type : text/xml; charset=utf-8");
 		print $response;
 		// CallSidとproject_idを入力
-		$sql = sprintf("INSERT INTO MA10_voices (project_id, CallSid,created) VALUES (%d, '%s',NOW())",mysql_real_escape_string($table['id']),mysql_real_escape_string($callSid));
-		$record = mysql_query($sql) or die(mysql_error());
+		$Voice = new Voice();
+		$Voice->before_record($table['id'],$callSid);
 
 	}else{ // 間違い
 		$cnt++;
@@ -54,7 +50,7 @@ if(!empty($_POST['Digits'])){
 		print $response;
 	}
 }else{
-	$message_1 = 'こちらは、ファイトコールです。';
+	$message_1 = 'こちらは、ぼいすはぶ、です。';
 	$message_1 .= 'ピンコードを入力して下さい。';
 	
 	$response->say($message_1, array("language"=>"ja-jp"));

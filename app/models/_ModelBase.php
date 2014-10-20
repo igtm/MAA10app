@@ -58,5 +58,25 @@ class ModelBase{
 
         return $res;        
     }
-}
+// DELETEを実行
+    public function delete($params = null)
+    {
+		
+		$arr = array();
+		foreach((array)$params as $key => $value) {
+			$arr[] = $key. "=:".$key;
+		}
+		$where_new = join(" AND ",$arr);
+		$sql = sprintf('DELETE FROM %s WHERE '.$where_new,$this->table_name);
+	
+        $stmt = $this->db->prepare($sql);
+        if ($params != null) {
+            foreach ($params as $key => $val) {
+                $stmt->bindValue(':' . $key, $val);
+            }
+        }
+        $res = $stmt->execute();
+        
+        return $res;
+    }}
 ?>

@@ -113,10 +113,6 @@
 			$stmt -> bindValue(":project_id",$this->id, PDO::PARAM_INT);
 			$stmt -> execute();
 		}
-
-
-		
-		
 /* ------- private --------- */
 		
 		// get_voices
@@ -165,6 +161,13 @@
 				if($table['cnt'] ==0){$flag = false;}
 			}
 			return $pin;
+		}
+		
+/* ------- tel --------- */
+		public function get_projectDetailByPin($pin){
+			$params = array("pin"=>$pin);
+			$return = $this->select("id,pin,status,scene,recordtime",$params);
+			return $return[0];
 		}
 	}
 ?>

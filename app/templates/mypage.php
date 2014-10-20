@@ -25,17 +25,17 @@
         <input type="hidden" id="Tab_hidden_recordtime" name="recordtime"/>
             <li>
             <p class="Tab_infoText">・「お誕生日、おめでとう。」の一言のみを届ける、シンプルなプロジェクトです。<br>・録音３秒以内/人</p>
-            <input type="text" name="" class="login_input" data-scene="1" placeholder="プロジェクト名" maxlength="32" required />
+            <input type="text" name="" class="Tab_input" data-scene="1" placeholder="プロジェクト名" maxlength="32" required />
             <button class="Tab_button" data-scene="1" data-recordtime="3">作成</button>
             </li>
             <li class="Tab_hide">
             <p class="Tab_infoText">・みんなの応援の言葉を届けよう<br>・録音５秒以内/人</p>
-            <input type="text" name="" class="login_input" data-scene="2" placeholder="プロジェクト名" maxlength="32" required/>
+            <input type="text" name="" class="Tab_input" data-scene="2" placeholder="プロジェクト名" maxlength="32" required/>
             <button class="Tab_button" data-scene="2" data-recordtime="5">作成</button>
             </li>
             <li class="Tab_hide">
             <p class="Tab_infoText">・みんなの言葉を届けよう<br>・録音１０秒以内/人</p>
-            <input type="text" name="" class="login_input" data-scene="3" placeholder="プロジェクト名" maxlength="32" required />
+            <input type="text" name="" class="Tab_input" data-scene="3" placeholder="プロジェクト名" maxlength="32" required />
             <button class="Tab_button" data-scene="3" data-recordtime="10">作成</button>
             </li>
             <li class="Tab_hide">
@@ -49,7 +49,7 @@
                 </select>
             
             秒/人</p>
-            <input type="text" name="" class="login_input" data-scene="10" placeholder="プロジェクト名" maxlength="32"required />
+            <input type="text" name="" class="Tab_input" data-scene="10" placeholder="プロジェクト名" maxlength="32"required />
             <button class="Tab_button" data-scene="10" disabled>作成</button>
             </li>
         </form>

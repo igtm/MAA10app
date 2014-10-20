@@ -21,11 +21,10 @@ $(function() {
 <body>
     <div class="Home">
     <div class="Home_mask"></div>
-    <div class="Home_title"><img style="width:100%;" src="images/logo4.png"/></div>
+    <div class="Home_title"><img src="images/logo4.png"/></div>
         <div class="Home_box">
         これは「みんなの声を電話を使って簡単に集められる」サービスです。<br>
                         「集められた音声を、電話で届ける」こともできます。<br>
-                        どんな高価な物よりも、みなさんの声の方が力があります。<br>
                         お誕生日を迎えた人へ「おめでとう」を<br>
                         直接は会えないけど励ましたい人へ「がんばれ」を<br>
                         卒業式・別れのシーンで大切な人へ「今までありがとう」を<br>

@@ -1,7 +1,7 @@
 <?php $title = 'プロジェクト';?>
 <?php $isLogin = true;?>
 <?php $status = array(1 => "編集中","実行待ち","実行中","エラー","完了");?>
-<?php $scene = array(1 => "誕生日<i class='fa fa-birthday-cake'></i>",2=>"応援！",3=>"別れ",10=>"オリジナル");?>
+<?php $scene = array(1 => "誕生日<i class='fa fa-birthday-cake'></i>",2=>"応援！<i class='fa fa-flag-o scene_cheerup'></i>",3=>"別れ<i class='fa fa-child scene_farewell'></i>",10=>"オリジナル<i class='fa fa-file-audio-o scene_original'></i>");?>
 <?php ob_start();?>
 <?php if($modified):?>
 <div class="modified">変更されました。</div>
@@ -52,7 +52,7 @@
     	<?php $i = 1;?>
 		<?php foreach ($voices as $voice):?>
     	<li class="Voices_list" id="<?php echo h($voice['id']);?>" data-voice="<?php echo $voice['voice'];?>">
-			<?php echo $voice['id'].$voice['voice'].$voice['created'];?>
+			<?php echo $voice['id'].$voice['memo'];?>
             <a href="<?php echo VOICE_URL.h($voice['voice']);?>"><i class="fa fa-caret-square-o-right Voices_play" style="font-size:22px;"></i></a>
         </li>
 		<?php $i++;?>
@@ -65,6 +65,10 @@
         <li class="Voices_Rank"><?php echo $j;?></li>
     <?php endfor;?>
     </ul>
+</div>
+<div id="dialog" title="音声結合完了！">
+    <div>結合ファイルをダウンロード</div>
+    <div>指定番号に入電、自動再生</div>
 </div>
 <?php $content = ob_get_clean();?>
 <?php include 'layout.php';?>
