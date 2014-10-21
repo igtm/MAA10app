@@ -1,4 +1,4 @@
-<?php echo $error_message;?>
+<?php if(!empty($error_message)){echo $error_message;}?>
 <table class="Login_table">
 <form method='post' action='login'>
 <tr><td><input type='text' class="login_input" placeholder="Username" id="username" name='username'><td></tr>
