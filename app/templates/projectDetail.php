@@ -67,8 +67,11 @@
     </ul>
 </div>
 <div id="dialog" title="音声結合完了！">
-    <div>結合ファイルをダウンロード</div>
-    <div>指定番号に入電、自動再生</div>
+<div class="Dialog_boxes">
+    <div class="Dialog_left">結合ファイルをダウンロード<a href=""><i class="fa fa-caret-square-o-right"></i>
+</a></div>
+    <div class="Dialog_right">指定番号に入電、自動再生</div>
+</div>
 </div>
 <?php $content = ob_get_clean();?>
 <?php include 'layout.php';?>

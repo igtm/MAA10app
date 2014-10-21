@@ -352,6 +352,22 @@ text-align: center;
 	color: #F66D5D;
 	border: #F66D5D solid 2px;	
 }
+/* ----------- Dialog ------------------- */
+.Dialog_boxes {
+	display: -webkit-box;
+    display: -moz-box;
+    display: -ms-box;
+    display: -o-box;
+    display: box;	
+	display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;	
+}
+.Dialog_box {
+	
+}
 
 /* Media Queries
 ----------------------------------------------------------- */

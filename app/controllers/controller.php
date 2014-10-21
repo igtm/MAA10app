@@ -141,15 +141,15 @@ function connect_all_wav($wav_urls){
 	$filename = 'wav_'.date('Y-m-d-D@').$id.'.wav';
 	$wav_path = SAVE_WAV_DIR.$filename;
 	$all_wav->SaveFile($wav_path);
-	print $wav_path."\n";
+	//print $wav_path."\n";
 
 	//音声再選時間取得
 	$getID3 = new getID3();
 	$info = $getID3->analyze($wav_path);
 	$playtime = $info["playtime_seconds"];
+	$wav_httpPath = ROOT_DIR."app/models/voices/".$filename;
 
-
-	$results[] = $wav_path; //保存先パス
+	$results[] = $wav_httpPath; //保存先パス
 	$results[] = $playtime; //再生時間[秒数]
 
 	return $results;

@@ -36,7 +36,7 @@ $(function() {
   });
   /* ------- ダイアログボックス ----------- */
    	$("#dialog").dialog({
-		//autoOpen: false,
+		autoOpen: false,
 		modal: true	,
 		buttons: {
 　　　　"OK": function(){
@@ -55,16 +55,18 @@ $(function() {
 	  $(this).css({"box-shadow":"none","-moz-box-shadow":"none","-webkit-box-shadow":"none"});
 	  $.ajax({
 		  type:"POST",
+		  dataType:"json",
 		  url:"<?php echo ROOT_DIR."async/combine.php";?>",
 		  data:{member_id:<?php echo h($_SESSION['MA10_id']);?>,
 		  		project_id:<?php echo h($project['id']);?>}
 	  	  }).done(function(data, status, xhr) {
  			// 通信成功時の処理
+			$(".Dialog_left a").attr("href",data["comp_voice"]);
 			$('#dialog').dialog('open');
-			alert("成功");
-			alert(data);
-			alert(status);
-			alert(xhr);
+			//alert("成功");
+			//alert(data);
+			//alert(status);
+			//alert(xhr);
 		  }).fail(function(xhr, status, error) {
 			 // 通信失敗時の処理
 			alert("失敗");
@@ -73,7 +75,6 @@ $(function() {
 			alert(error);
 		  }).always(function(arg1, status, arg2) {
 			// 通信完了時の処理
-			alert("終了");
 		  });
 		
 	  }
