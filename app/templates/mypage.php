@@ -3,7 +3,7 @@
 <?php $icons = array(1 => "fa-edit","fa-clock-o","fa-caret-square-o-right","fa-exclamation-triangle","fa-check");?>
 <?php $scene = array(1 => "<i class='fa fa-birthday-cake scene_birthday'></i>",2=>"<i class='fa fa-flag-o scene_cheerup'></i>",3=>"<i class='fa fa-child scene_farewell'></i>",10=>"<i class='fa fa-file-audio-o scene_original'></i>");?>
 <?php ob_start();?>
-<?php echo $error_message;?>
+<?php if(!empty($error_message)){echo $error_message;}?>
 <?php if($execute):?>
 <div class="modified">プロジェクトが実行待ち状態に入りました！</div>
 <?php endif;?>
