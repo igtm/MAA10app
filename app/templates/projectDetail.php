@@ -36,7 +36,7 @@
 <input type="hidden" name="result_modify" id="result_modify">
 <div class="form_btn">
 <button id="submit-modify" class="btn-original" disabled>変更保存</button>
-<button id="submit-execute" class="btn-original" <?php if(empty($voices) || $project['status']!=1){?>disabled<?php }?>>音声結合！</button>
+<input type="button" id="submit-execute" class="btn-original" value="音声結合！" <?php if(empty($voices) || $project['status']!=1){?>disabled<?php }?>>
 </div>
 </form>
 </div>
@@ -64,7 +64,9 @@
     </ul>
 </div>
 <?php }else{?>
+<div class="center">
 	<a href="<?php echo h($project['comp_voice']);?>" target="_blank"><i class="fa fa-5x fa-caret-square-o-right"></i></a>
+</div>
 <?php }?>
 
 <div id="dialog" title="音声結合完了！">

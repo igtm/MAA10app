@@ -402,6 +402,11 @@ text-align: center;
 	font-size:5rem;
 }
 
+/* ------------------ Other ------------------------- */
+.center {
+	text-align:center;	
+}
+
 /* Media Queries
 ----------------------------------------------------------- */
 

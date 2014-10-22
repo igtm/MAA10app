@@ -120,7 +120,7 @@ $(function() {
   /* ------- 結合！ ----------- */
 
   $("#submit-execute").click(function(e) {
-	  e.preventDefault();
+	  //e.preventDefault();
 	  if(confirm("音声結合しますか？※通信状態が良い場所で行って下さい")){
 	  // animation
 	  $("#Loading").show();
