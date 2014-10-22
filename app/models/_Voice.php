@@ -19,6 +19,11 @@
 			$return = $this->select("voice",$params);
 			return $return[0];
 		}
+		public function get_voices($project_id){
+			$params = array("project_id"=>$project_id);
+			$return = $this->select("voice",$params);
+			return $return;
+		}
 		public function get_setting($CallSid){
 			$sql = "SELECT p.scene,p.recordtime FROM MA10_voices v,MA10_projects p WHERE p.id=v.project_id AND v.CallSid=:CallSid";
 			$stmt = $this->db->prepare($sql);
@@ -51,6 +56,11 @@
 			$stmt = $this->db -> prepare($sql);
 			$stmt -> bindValue(":CallSid",$CallSid, PDO::PARAM_INT);
 			$stmt -> execute();
+		}
+		public function delete_voices($project_id){
+			$params = array("project_id"=>$project_id);
+			$return = $this->delete($params);
+			return $return;
 		}
 		
 	}

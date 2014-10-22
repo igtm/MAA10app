@@ -7,6 +7,10 @@
 <?php if($execute):?>
 <div class="modified">プロジェクトが実行待ち状態に入りました！</div>
 <?php endif;?>
+<?php if($complete):?>
+<div class="modified">プロジェクト完了！</div>
+<?php endif;?>
+
 	<?php if($_GET['created']):?>
     	<?php require("_tutorial_NewProject.php");?>
     <?php endif;?>

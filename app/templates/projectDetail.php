@@ -33,17 +33,14 @@
 </div>
 <div class="form_modifyVoice">
 <form method="POST">
-<input type="hidden" name="result_datetime" id="result_datetime">
 <input type="hidden" name="result_modify" id="result_modify">
-<label for="datetime">入電したい時間：</label>
-<input type="datetime-local" id="datetime" name="datetime" min="<?php echo date("Y-m-d")."T".date("H:00",strtotime("+1 hour"));?>" 
-    	max="<?php echo date("Y-m-d",strtotime("+3 month"))."T".date("H:00",strtotime("+1 hour"));?>" step="1800" value="<?php echo h(str_replace(" ", "T", $project['send_time']));?>">
 <div class="form_btn">
 <button id="submit-modify" class="btn-original" disabled>変更保存</button>
-<button id="submit-execute" class="btn-original" <?php if(empty($project['send_time']) || empty($voices)){?>disabled<?php }?>>音声結合！</button>
+<button id="submit-execute" class="btn-original" <?php if(empty($voices) || $project['status']!=1){?>disabled<?php }?>>音声結合！</button>
 </div>
 </form>
 </div>
+<?php if($project['status']==1){?>
 <div class="Voices">
 	<ul class="Voices_lists">
     <?php if(empty($voices)){?>
@@ -66,11 +63,27 @@
     <?php endfor;?>
     </ul>
 </div>
+<?php }else{?>
+	<a href="<?php echo VOICE_URL.$project['comp_voice'];?>" target="_blank"><i class="fa fa-5x fa-caret-square-o-right"></i></a>
+<?php }?>
+
 <div id="dialog" title="音声結合完了！">
 <div class="Dialog_boxes">
-    <div class="Dialog_left">結合ファイルをダウンロード<a href=""><i class="fa fa-caret-square-o-right"></i>
-</a></div>
-    <div class="Dialog_right">指定番号に入電、自動再生</div>
+    <div class="Dialog_left">
+    	<div class="Dialog_title">ダウンロード</div>
+        <div class="Dialog_body"><a href="" target="_blank"><i class="fa fa-4x fa-caret-square-o-right"></i></a></div>
+        <button id="dialog-complete" class="btn-original">プロジェクト完了</button>
+    </div>
+    <div class="Dialog_right">
+    	<div class="Dialog_title">電話で再生する</div>
+        <div class="Dialog_body">
+                <label for="datetime">入電したい時間：</label>
+                <input type="datetime-local" id="datetime" class="Dialog_datetime" style="width: 100%;font-size: .8rem;" name="datetime" min="<?php echo date("Y-m-d")."T".date("H:00",strtotime("+1 hour"));?>"
+                max="<?php echo date("Y-m-d",strtotime("+3 month"))."T".date("H:00",strtotime("+1 hour"));?>" step="1800" value="<?php echo date("Y-m-d")."T".date("H:00",strtotime("+1 hour"));?>">
+                <input type="tel" placeholder="電話番号" id="phone" name="phone" style="width: 100%;font-size: .8rem;" />
+		</div>
+        <button id="dialog-execute" class="btn-original" disabled>実行</button>
+    </div>
 </div>
 </div>
 <?php $content = ob_get_clean();?>

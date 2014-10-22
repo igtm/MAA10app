@@ -21,6 +21,12 @@ function mypage($app){
 	if(isLogin($app,"app/") && !empty($_GET['created'])){
 		//projectが作られた時の変数
 	}
+	if($_GET['execute']){ // executeされた時リダイレクトで、来てる
+		$execute = true;
+	}
+	if($_GET['complete']){ // completeされた時リダイレクトで、来てる
+		$complete = true;
+	}
 	if(!empty($_POST)){
 		if(!empty($_POST['project_name'])&&!empty($_POST['scene'])&&!empty($_POST['recordtime'])){
 			$Project = new Project();
@@ -33,7 +39,7 @@ function mypage($app){
 	}
 	$member_name = getUsername($_SESSION['MA10_id']);
 	$projects = get_projects($_SESSION['MA10_id']);
-	$app->render('mypage.php', array('projects'=> $projects,'target_name'=>$target_name,'member_name'=>$member_name,'error_message'=>$error_message));
+	$app->render('mypage.php', array('projects'=> $projects,'target_name'=>$target_name,'member_name'=>$member_name,'error_message'=>$error_message,"execute"=>$execute,"complete"=>$complete));
 }
 function get_projects($member_id){
 	$Project = new Project();

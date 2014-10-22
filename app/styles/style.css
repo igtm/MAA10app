@@ -364,9 +364,42 @@ text-align: center;
     display: -ms-flex;
     display: -o-flex;
     display: flex;	
-}
-.Dialog_box {
 	
+	text-align:center;
+}
+.Dialog_left {
+	width:50%;
+}
+.Dialog_right {
+	width:50%;
+	border-left: solid;
+}
+.Dialog_title {
+}
+.Dialog_body {
+	margin: 3px 3px 15px;
+}
+.Dialog_datetime {
+		
+}
+/* ------------- Loading ---------------- */
+#Loading_mask {
+	z-index:10000;
+	position: absolute;
+	top: 0;
+	left:0;
+	right:0;
+	bottom:0;
+	background:#000;
+	opacity:0.5;
+}
+#Loading_icon {
+	z-index:50001;	
+	position: absolute;
+	left: 45%;
+	top: 40%;
+	color:#fff;
+	font-size:5rem;
 }
 
 /* Media Queries

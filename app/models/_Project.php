@@ -67,13 +67,17 @@
 			$stmt -> execute();
 		}
 		
-		public function set_send_time($send_time){
+		public function queue($send_time,$target_id){
 			
-			$sql = sprintf("UPDATE %s SET send_time=:send_time  WHERE id=:id",$this->table_name);
+			$sql = sprintf("UPDATE %s SET send_time=:send_time,target_id=:target_id  WHERE id=:id",$this->table_name);
 			$stmt = $this->db->prepare($sql);
 			$stmt -> bindValue(':send_time', $send_time, PDO::PARAM_STR);
+			$stmt -> bindValue(':target_id', $target_id, PDO::PARAM_STR);
 			$stmt -> bindValue(':id', $this->id, PDO::PARAM_INT);
-			$stmt -> execute();
+			$return = $stmt -> execute();
+			
+			$this->change_status(2);// 実行待ち
+			return $return;
 		}
 		
 		public function create_project($member_id,$pName,$scene,$recordtime){
