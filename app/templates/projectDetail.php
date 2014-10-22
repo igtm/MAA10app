@@ -64,7 +64,7 @@
     </ul>
 </div>
 <?php }else{?>
-	<a href="<?php echo VOICE_URL.$project['comp_voice'];?>" target="_blank"><i class="fa fa-5x fa-caret-square-o-right"></i></a>
+	<a href="<?php echo h($project['comp_voice']);?>" target="_blank"><i class="fa fa-5x fa-caret-square-o-right"></i></a>
 <?php }?>
 
 <div id="dialog" title="音声結合完了！">
