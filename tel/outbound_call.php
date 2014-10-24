@@ -15,6 +15,7 @@ $project_id = $_GET['project_id'];
 	$response = new Services_Twilio_Twiml();
 	$response->say($message_first, array("language"=>"ja-jp"));
 	$response->play(h($table['comp_voice']), array("loop" => 1));
+	$response->pause("");
 	$response->say($message_last, array("language"=>"ja-jp"));
 	
 	header("Content-Type : text/xml; charset=utf-8");
