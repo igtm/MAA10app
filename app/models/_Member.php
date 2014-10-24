@@ -11,12 +11,28 @@ class Member extends ModelBase{
 			parent::__construct();
 		}
 		public function addMember($params){
-			return $this->insert($params);
+			
+			$this->insert($params);
+			// id 取得　（autoIncreamentなので）
+			$stmt = $this->db->query("SELECT LAST_INSERT_ID()");
+			$result = $stmt -> fetch(PDO::FETCH_ASSOC);
+			$id = $result['LAST_INSERT_ID()'];
+			
+			//ログイン
+			$_SESSION['MA10_id'] = $id;
+			$_SESSION['MA10_time'] = time();
+
+
 		}
 		public function isNewUserName($userName){
 			$params = array("username"=>$userName);
 			$return = $this->select("*",$params);
-			if(!empty($return)){return true;}else{return false;}
+			if(empty($return)){return true;}else{return false;}
+		}
+		public function isNewEmail($email){
+			$params = array("email"=>$email);
+			$return = $this->select("*",$params);
+			if(empty($return)){return true;}else{return false;}
 		}
 		public function login ($username,$password){
 			$params = array("username"=>$username,'password'=>$password);

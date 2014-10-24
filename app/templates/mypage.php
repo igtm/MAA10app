@@ -4,16 +4,20 @@
 <?php $scene = array(1 => "<i class='fa fa-birthday-cake scene_birthday'></i>",2=>"<i class='fa fa-flag-o scene_cheerup'></i>",3=>"<i class='fa fa-child scene_farewell'></i>",10=>"<i class='fa fa-file-audio-o scene_original'></i>");?>
 <?php ob_start();?>
 <?php if(!empty($error_message)){echo $error_message;}?>
-<?php if($execute):?>
+<?php if($_GET['execute']):?>
 <div class="modified">プロジェクトが実行待ち状態に入りました！</div>
 <?php endif;?>
-<?php if($complete):?>
+<?php if($_GET['complete']):?>
 <div class="modified">プロジェクト完了！</div>
 <?php endif;?>
 
 	<?php if($_GET['created']):?>
     	<?php require("_tutorial_NewProject.php");?>
     <?php endif;?>
+    <?php if($_GET['first']):?>
+    	<?php require("_tutorial_NewMember.php");?>
+    <?php endif;?>
+
     <div class="Tab">
     <p class="Tab_title">プロジェクト作成</p>
         <ul class="Tab_block">
