@@ -1,3 +1,4 @@
+<?php $secondHierarchyLevel = true;?>
 <?php $title = 'プロジェクト';?>
 <?php $isLogin = true;?>
 <?php $status = array(1 => "<i class='fa fa-edit'></i> 編集中","<i class='fa fa-clock-o'></i> 実行待ち","<i class='fa fa-caret-square-o-right'></i> 実行中","<i class='fa fa-exclamation-triangle'></i> エラー","<i class='fa fa-check'></i> 完了");?>

@@ -1,3 +1,5 @@
+<?php $upper = '';?>
+<?php if(!empty($secondHierarchyLevel)){$upper = '../';}?>
 <!DOCTYPE html>
 <html>
 <head>
