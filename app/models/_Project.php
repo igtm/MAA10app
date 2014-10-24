@@ -14,6 +14,9 @@
 		public function get_id(){
 			return $this->id;	
 		}
+		public function set_id($id){
+			$this->id = $id;	
+		}
 		
 /* ------- GET DATA --------- */
 
@@ -191,6 +194,23 @@
 			$params = array("pin"=>$pin);
 			$return = $this->select("*",$params);
 			return $return[0];
+		}
+		public function checkProjectTobeExecuted(){
+			
+			$sql = 'SELECT t.phone, p.id  FROM MA10_projects p, MA10_targets t WHERE p.status=2 AND p.send_time<=NOW() AND p.target_id=t.id';
+			$stmt = $this->db->query($sql);
+			$return = $stmt -> fetchAll();
+			return $return;
+
+		}
+		public function get_who_called(){
+			$sql = 'SELECT m.name AS fromName, p.comp_voice  FROM MA10_projects p, MA10_members m 
+				WHERE p.member_id=m.id AND p.id=:id';
+			$stmt = $this->db->prepare($sql);
+			$stmt -> bindValue(':id', $this->id, PDO::PARAM_INT);
+			$stmt -> execute();
+			$return = $stmt -> fetch();
+			return $return;
 		}
 	}
 ?>

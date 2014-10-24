@@ -1,15 +1,31 @@
 <?php
-require 'http://i-and-i.main.jp/API/MAA10app/lib/twilio-php/Services/Twilio.php';
-require 'http://i-and-i.main.jp/API/MAA10app/app/models/config.php';
-mysql_connect('mysql572.phy.lolipop.jp','LAA0350474','2x2jycy9') or die(mysql_error());
-mysql_select_db('LAA0350474-3tnmww');
-mysql_query('SET NAMES UTF8');
+require dirname(__FILE__).'/../lib/twilio-php/Services/Twilio.php';
+require dirname(__FILE__).'/../app/models/model.php';
 function h($value){return htmlspecialchars($value,ENT_QUOTES,'UTF-8');}
+function phone($phone){return "+81"+ltrim($phone, '0');}
 
-$sql = "SELECT t.phone, p.id  FROM MA10_projects p, MA10_targets t WHERE p.status=2 AND p.send_time<=NOW() AND p.target_id=t.id";
-$record = mysql_query($sql) or die(mysql_error());
-$table = mysql_fetch_assoc($record);
-if($table){
-	
+$Project = new Project();
+$returns = $Project->checkProjectTobeExecuted();// t.phone p.id
+if($returns){
+	foreach ($returns as $return){
+		cron($return);
+	}
 }
+
+function cron($return){
+	$tel_to = phone($return['phone']);
+	$project_id = $return['id'];
+	$url = ROOT_DIR.'tel/outbound_call.php?project_id='.h($project_id);
+	// status=3　実行中
+	$Project->set_id($project_id);
+	$Project->change_status(3);
+	$client = new Services_Twilio(ACCOUNT_SID, AUTH_TOKEN);
+	$message = $client->account->calls->create(
+		TEL_FROM,
+		$tel_to,
+		$url,
+		array('StatusCallback'=>ROOT_DIR.'tel/outbound_end.php')
+	);
+}
+
 ?>
