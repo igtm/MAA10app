@@ -16,7 +16,7 @@
 		}
 		public function get_voice($CallSid){
 			$params = array("CallSid"=>$CallSid);
-			$return = $this->select("voice",$params);
+			$return = $this->select("project_id,voice",$params);
 			return $return[0];
 		}
 		public function get_voices($project_id){

@@ -1,7 +1,15 @@
 <?php $title = 'プロジェクト';?>
 <?php $isLogin = true;?>
-<?php $status = array(1 => "編集中","実行待ち","実行中","エラー","完了");?>
-<?php $scene = array(1 => "誕生日<i class='fa fa-birthday-cake'></i>",2=>"応援！<i class='fa fa-flag-o scene_cheerup'></i>",3=>"別れ<i class='fa fa-child scene_farewell'></i>",10=>"オリジナル<i class='fa fa-file-audio-o scene_original'></i>");?>
+<?php $status = array(1 => "<i class='fa fa-edit'></i> 編集中","<i class='fa fa-clock-o'></i> 実行待ち","<i class='fa fa-caret-square-o-right'></i> 実行中","<i class='fa fa-exclamation-triangle'></i> エラー","<i class='fa fa-check'></i> 完了");?>
+<?php $scene = array(1 => "<i class='fa fa-birthday-cake'></i> 誕生日",2=>"<i class='fa fa-flag-o scene_cheerup'></i> 応援！",3=>"<i class='fa fa-child scene_farewell'></i> 別れ",10=>"<i class='fa fa-file-audio-o scene_original'></i> オリジナル");?>
+<?php $sceneArray = array(1 => INBOUND_BIRTHDAY,2=>INBOUND_CHEERUP,3=>INBOUND_FAREWELL);?>
+<?php
+	if($project['scene']==10){
+		$contentTobeRecorded = $project['original_content'];
+	}else{
+		$contentTobeRecorded = $sceneArray[$project['scene']];
+	}
+?>
 <?php ob_start();?>
 <?php if($modified):?>
 <div class="modified">変更されました。</div>
@@ -14,8 +22,12 @@
     <td><?php echo "：".h($project['name']);?></td>
     </tr>
     <tr>
+    <td>録音して欲しい内容</td>
+    <td><?php echo "：".h($contentTobeRecorded);?></td>
+    </tr>
+    <tr>
     <td>ステータス</td>
-    <td><?php echo "：".h($status[$project['status']]);?></td>
+    <td><?php echo "：".$status[$project['status']];?></td>
     </tr>
     <tr>
     <td>シーン</td>

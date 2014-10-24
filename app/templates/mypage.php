@@ -31,6 +31,7 @@
         <input type="hidden" id="Tab_hidden_project_name" name="project_name"/>
         <input type="hidden" id="Tab_hidden_scene" name="scene"/>
         <input type="hidden" id="Tab_hidden_recordtime" name="recordtime"/>
+        <input type="hidden" id="Tab_hidden_original_content" name="original_content"/>
             <li>
             <p class="Tab_infoText">・「お誕生日、おめでとう。」の一言のみを届ける、シンプルなプロジェクトです。<br>・録音３秒以内/人</p>
             <input type="text" name="" class="Tab_input" data-scene="1" placeholder="プロジェクト名" maxlength="32" required />
@@ -47,7 +48,7 @@
             <button class="Tab_button" data-scene="3" data-recordtime="10">作成</button>
             </li>
             <li class="Tab_hide">
-            <p class="Tab_infoText">・自由に録音時間設定が可能<br>・録音
+            <p class="Tab_infoText">・録音
             
                 <select name="select_recordtime" id="select_recordtime">
                     <option value="unselected">未選択</option>
@@ -56,9 +57,14 @@
                     <?php endfor;?>
                 </select>
             
-            秒/人</p>
+            秒/人<br>
+            ・録音して欲しい内容<br>
+            <input type="text" id="original_content" style="color: #F66D5D;border: #F66D5D solid 2px;line-height: 22px;font-size: 16px;" 
+            	class="Tab_input" placeholder="例：田中への感謝の言葉" maxlength="32" required/><br>
+            
+            </p>
             <input type="text" name="" class="Tab_input" data-scene="10" placeholder="プロジェクト名" maxlength="32"required />
-            <button class="Tab_button" data-scene="10" disabled>作成</button>
+            <button class="Tab_button" data-scene="10">作成</button>
             </li>
         </form>
         </ul>

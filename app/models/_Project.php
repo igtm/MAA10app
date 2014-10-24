@@ -79,7 +79,6 @@
 			$this->change_status(2);// 実行待ち
 			return $return;
 		}
-		
 		public function create_project($member_id,$pName,$scene,$recordtime){
 			
 			$pin = $this->create_pin();
@@ -90,6 +89,26 @@
 			$stmt -> bindValue(':member_id', $member_id, PDO::PARAM_INT);
 			$stmt -> bindValue(':pin', $pin, PDO::PARAM_INT);
 			$stmt -> bindValue(':scene', $scene, PDO::PARAM_INT);
+			$stmt -> bindValue(':recordtime', $recordtime, PDO::PARAM_INT);
+			$stmt -> execute();
+			// project_id 取得　（autoIncreamentなので）
+			$stmt = $this->db->query("SELECT LAST_INSERT_ID()");
+			$result = $stmt -> fetch(PDO::FETCH_ASSOC);
+			$project_id = $result['LAST_INSERT_ID()'];
+			return array($pin,$project_id);
+		}
+		
+		public function create_projectWithAnnounce($member_id,$pName,$scene,$recordtime,$original_content){
+			
+			$pin = $this->create_pin();
+			$sql = sprintf("INSERT INTO %s (name,member_id,pin,scene,original_content,recordtime,created) 
+			VALUES (:pName,:member_id,:pin,:scene,:original_content,:recordtime,NOW())",$this->table_name);
+			$stmt = $this->db->prepare($sql);
+			$stmt -> bindValue(':pName', $pName, PDO::PARAM_STR);
+			$stmt -> bindValue(':member_id', $member_id, PDO::PARAM_INT);
+			$stmt -> bindValue(':pin', $pin, PDO::PARAM_INT);
+			$stmt -> bindValue(':scene', $scene, PDO::PARAM_INT);
+			$stmt -> bindValue(':original_content', $original_content, PDO::PARAM_STR);
 			$stmt -> bindValue(':recordtime', $recordtime, PDO::PARAM_INT);
 			$stmt -> execute();
 			// project_id 取得　（autoIncreamentなので）
@@ -170,7 +189,7 @@
 /* ------- tel --------- */
 		public function get_projectDetailByPin($pin){
 			$params = array("pin"=>$pin);
-			$return = $this->select("id,pin,status,scene,recordtime",$params);
+			$return = $this->select("*",$params);
 			return $return[0];
 		}
 	}

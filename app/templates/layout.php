@@ -179,11 +179,11 @@ $(function() {
 		
 	});
   /* ------- Tab form ----------- */
-  // POST: project_name , scene , recordtime
+  // POST: project_name , scene , recordtime, (original_content)
     $('.Tab_button').click(function(e) {
 		e.preventDefault();
 		var scene = $(this).attr("data-scene");
-		var project_name = $(".login_input[data-scene="+scene+"]").val();
+		var project_name = $(".Tab_input[data-scene="+scene+"]").val();
 		if(project_name == ''){alert("プロジェクト名が記入されていません。");
 		return ;}
 		if(scene == 10){
@@ -192,23 +192,22 @@ $(function() {
 				return;	
 			}
 			var recordtime = $("#select_recordtime").val();
+			if($("#original_content").val() == ''){
+				alert("録音して欲しい内容が記入されていません。");
+				return;	
+			}
+			var original_content = $("#original_content").val();
 		}else{
 			var recordtime = $(this).attr("data-recordtime");
 		}
 		$("#Tab_hidden_project_name").val(project_name);
 		$("#Tab_hidden_scene").val(scene);
 		$("#Tab_hidden_recordtime").val(recordtime);
+		if(scene == 10){$("#Tab_hidden_original_content").val(original_content);}
 	    $("form").submit();
 	});
-	  $("#select_recordtime").change(function() {
-		  if($(this).val()=='unselected'){
-			$(".Tab_button[data-scene=10]").attr("disabled","disabled");
-		  }else{
-			$(".Tab_button[data-scene=10]").removeAttr("disabled");
-		  }
-	  });
 	  // enterの無効化
-	    $(document).on("keypress", ".login_input", function(event) {
+	    $(document).on("keypress", ".Tab_input", function(event) {
 		    return event.which !== 13;
 		});
   

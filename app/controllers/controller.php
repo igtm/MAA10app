@@ -24,8 +24,13 @@ function mypage($app){
 	if(!empty($_POST)){
 		if(!empty($_POST['project_name'])&&!empty($_POST['scene'])&&!empty($_POST['recordtime'])){
 			$Project = new Project();
-			list($pin,$project_id) = $Project->create_project($_SESSION['MA10_id'],$_POST['project_name'],$_POST['scene'],$_POST['recordtime']);
-			$url = ROOT_DIR."app/mypage?created=true&pin=".h($pin)."&project_id=".h($project_id)."&recordtime=".h($_POST['recordtime']);
+			if($_POST['scene']==10){
+				if(empty($_POST['original_content'])){$error_message = '記入漏れがあります。';return;}
+				list($pin,$project_id) = $Project->create_projectWithAnnounce($_SESSION['MA10_id'],$_POST['project_name'],$_POST['scene'],$_POST['recordtime'],$_POST['original_content']);
+			}else{
+				list($pin,$project_id) = $Project->create_project($_SESSION['MA10_id'],$_POST['project_name'],$_POST['scene'],$_POST['recordtime']);
+			}
+			$url = ROOT_DIR."app/mypage?created=true&pin=".h($pin)."&project_id=".h($project_id)."&recordtime=".h($_POST['recordtime'])."&original_content=".urlencode($_POST['original_content'])."&project_name=".urlencode($_POST['project_name']);
 			$app -> redirect($url);
 		}else{
 			$error_message = '記入漏れがあります。';

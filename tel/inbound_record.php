@@ -2,7 +2,7 @@
 require dirname(__FILE__).'/../lib/twilio-php/Services/Twilio.php';
 require dirname(__FILE__).'/../app/models/model.php';
 function h($value){return htmlspecialchars($value,ENT_QUOTES,'UTF-8');}
-$sceneArray = array(1 => INBOUND_BIRTHDAY,2=>INBOUND_CHEERUP,3=>INBOUND_FAREWELL,10=>INBOUND_ORIGINAL);
+$sceneArray = array(1 => INBOUND_BIRTHDAY,2=>INBOUND_CHEERUP,3=>INBOUND_FAREWELL);
 
 
 	$RecordingSid = $_REQUEST['RecordingSid'];
@@ -38,11 +38,19 @@ if(empty($RecordingUrl)){
 			// voiceの削除(自DBから)
 			$Voice->delete_onlyVoiceColumn($callSid);
 			
+			// Project original_content
+			$Project = new Project($table['project_id']);
+			$table = $Project->get_projectDetail();
+			if($table['scene']==10){
+				$msg = $table['original_content'];
+			}else{
+				$msg = $sceneArray[$table['scene']];
+			}
 			// 録音
 			$message_2 = 'もう一度、録音し直します。';
 			$message_2 .= 'それでは、お名前と、';
-			$message_2 .= $sceneArray[$scene];
-			$message_2 .= h($recordtime).'秒以内で';
+			$message_2 .= h($msg);
+			$message_2 .= "を、".h($recordtime).'秒以内で';
 			$message_2 .= '録音して下さい。';
 	
 			$response->say($message_2, array("language"=>"ja-jp"));	

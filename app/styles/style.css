@@ -338,14 +338,15 @@ right: 0;
 	color: white;
 	width: 75px;
 	line-height: 30px;
-	position: absolute;
 	font-size:12px;
 }
 .Tab_input {
 width: 50%;
 line-height: 30px;
-font-size: 25px;
+font-size: 18px;
 text-align: center;	
+color:#F66D5D;
+border:solid 2px #F66D5D;
 }
 #select_recordtime {
 	background: white;
@@ -440,6 +441,14 @@ text-align: center;
 }
 .Home_login {
 	width:80%;	
+}
+.Tab_input {
+width: 75%;
+line-height: 20px;
+font-size: 18px;
+}
+.Tab_button {
+width: 20%;
 }
 }
 @media only screen and (max-width: 450px) { 
