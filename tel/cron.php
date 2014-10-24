@@ -26,7 +26,9 @@ function cron($Project,$return){
 			TEL_FROM,
 			$tel_to,
 			$url,
-			array('StatusCallback'=>ROOT_DIR.'tel/outbound_end.php?project_id='.$project_id)
+			array('StatusCallback'=>ROOT_DIR.'tel/outbound_end.php?project_id='.$project_id,
+				  'Timeout'=>10,
+				  'ifMachine'=>'Hangup')
 		);
 	} catch (Services_Twilio_RestException $e) {
 		echo $e->getMessage();
