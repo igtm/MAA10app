@@ -131,8 +131,8 @@ $(function() {
 		  type:"POST",
 		  dataType:"json",
 		  url:"<?php echo ROOT_DIR."async/combine.php";?>",
-		  data:{member_id:<?php echo h($_SESSION['MA10_id']);?>,
-		  		project_id:<?php echo h($project['id']);?>}
+		  data:{member_id:<?php if(empty($_SESSION['MA10_id'])){echo 'damy';}?><?php echo h($_SESSION['MA10_id']);?>,
+		  		project_id:<?php if(empty($project['id'])){echo 'damy';}?><?php echo h($project['id']);?>}
 	  	  }).done(function(data, status, xhr) {
  			// 通信成功時の処理
 			$("#Loading").hide();
