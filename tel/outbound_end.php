@@ -2,7 +2,6 @@
 require dirname(__FILE__).'/../lib/twilio-php/Services/Twilio.php';
 require dirname(__FILE__).'/../app/models/model.php';
 function h($value){return htmlspecialchars($value,ENT_QUOTES,'UTF-8');}
-$CallSid = h($_POST['CallSid']); 
 $project_id = $_GET['project_id'];
 $CallStatus = $_POST['CallStatus'];
 $Project = new Project($project_id);
@@ -11,10 +10,12 @@ switch($CallStatus){
 		// voiceの削除(TwilioDBから)
 		$client = new Services_Twilio(ACCOUNT_SID, AUTH_TOKEN); 
 		$Voice = new Voice();
-		$table = $Voice->get_voice($CallSid);	
-		$client->account->recordings->delete($table['voice']);
+		$table = $Voice->get_voices($project_id);
+		foreach ($table as $result){
+			$client->account->recordings->delete($result['voice']);
+		}
 		// voice行の完全削除(自DBから)
-		$Voice->delete_voice($CallSid);
+		$Voice->delete_voices($project_id);
 
 		// status=5　終了。
 		$Project->change_status(5);

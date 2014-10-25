@@ -6,7 +6,7 @@ $project_id = $_GET['project_id'];
 	$Project = new Project($project_id);
 	$table = $Project->get_who_called();// toName fromName comp_voice
 
-	$message_first = 'こちらは、ファイトコールです。';
+	$message_first = 'こちらは、ボイスハブです。';
 	$message_first .= h($table['fromName'])."様より";
 	$message_first .= 'メッセージを預かっております。';
 	$message_first .= 'それでは再生します。';
