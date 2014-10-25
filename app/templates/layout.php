@@ -213,6 +213,18 @@ $(function() {
 		    return event.which !== 13;
 		});
   
+ /* ---------------------------- ProjectDetail 定型文表示 ------------- */
+	 $("#SetPhrase_title").click(function(){
+		 var i = $("#SetPhrase_title > i");
+		if(i.hasClass("fa-caret-right")){
+			$("#SetPhrase_title > i").removeClass("fa-caret-right");
+			$("#SetPhrase_title > i").addClass("fa-caret-down");
+		}else{
+			$("#SetPhrase_title > i").removeClass("fa-caret-down");
+			$("#SetPhrase_title > i").addClass("fa-caret-right");
+		}
+	 	$("#SetPhrase_box").slideToggle();
+	 });
 });
 </script>
 <title><?php echo $title;?></title>

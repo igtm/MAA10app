@@ -402,6 +402,12 @@ border:solid 2px #F66D5D;
 	color:#fff;
 	font-size:5rem;
 }
+/* ------------------ SetPhrase ------------- */
+#SetPhrase_title {
+	color: #e74c3c;
+}
+
+
 
 /* ------------------ Other ------------------------- */
 .center {
