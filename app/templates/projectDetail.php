@@ -44,6 +44,7 @@
     </tr>
     </table>
 <p id="SetPhrase_title"><i class="fa fa-caret-right"></i> メール定型文を表示</p>
+<p class="Project_delete">削除</p>
 <div id="SetPhrase_box" style="display:none;">
 
             <div class="Tutorial_box">
@@ -88,7 +89,7 @@
     	<?php $i = 1;?>
 		<?php foreach ($voices as $voice):?>
     	<li class="Voices_list" id="<?php echo h($voice['id']);?>" data-voice="<?php echo $voice['voice'];?>">
-			<?php echo $voice['id'].$voice['memo'];?>
+			<?php echo $voice['memo'];?>
             <a href="<?php echo VOICE_URL.h($voice['voice']);?>"><i class="fa fa-caret-square-o-right Voices_play" style="font-size:22px;"></i></a>
         </li>
 		<?php $i++;?>

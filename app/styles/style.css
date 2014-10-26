@@ -3,8 +3,9 @@
 
 html{height:100%;}
 body {margin:0; background:#F5F5F5;width:100%;height:100%;}
+
 ul {margin:0; padding:0;list-style: none;}
-.Container { height:auto; width: 100%; margin: 0 auto;}
+.Container { height:100%; width: 100%; margin: 0 auto;}
 a {text-decoration:none; color:#000000}
 /* ------------------Home ----------------------- */
 .Home {
@@ -133,6 +134,17 @@ a {text-decoration:none; color:#000000}
 .List_status {
 	
 }
+
+/* ----------------footer ---------------- */
+.footer {
+	margin: 30px auto 0;
+	font-size: 70%;
+	color: gray;	
+}
+
+
+
+
 
 /*  ------------------------------------------------*/
 .Tutorial,.Box{
@@ -406,7 +418,11 @@ border:solid 2px #F66D5D;
 #SetPhrase_title {
 	color: #e74c3c;
 }
-
+.Project_delete,.Member_delete {
+	color: #e74c3c;
+	text-align:right;
+	margin: 0;
+}
 
 
 /* ------------------ Other ------------------------- */
@@ -433,7 +449,7 @@ border:solid 2px #F66D5D;
 	width: 30%;
 }
 .Lists ,.Tutorial ,.Box, .Reference_icon,.Voices,.form_modifyVoice,.Tab{
-	width:95%;
+	width:90%;
 }
 .Tab_block li{
 	font-size: 12px;
@@ -449,12 +465,12 @@ border:solid 2px #F66D5D;
 	width:80%;	
 }
 .Tab_input {
-width: 75%;
+width: 60%;
 line-height: 20px;
 font-size: 18px;
 }
 .Tab_button {
-width: 20%;
+width: 22%;
 }
 }
 @media only screen and (max-width: 450px) { 

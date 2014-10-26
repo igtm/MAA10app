@@ -32,6 +32,11 @@
 			$return = $stmt -> fetch();
 			return array((int)$return['scene'],(int)$return['recordtime']);
 		}
+		public function get_untextized(){
+			$params = array("status_memo"=>1);
+			$return = $this->select("id,voice",$params);
+			return $return;
+		}
 		
 /* ------- SET DATA --------- */
 		public function before_record($project_id,$CallSid) {
@@ -43,6 +48,13 @@
 			$stmt = $this->db -> prepare($sql);
 			$stmt -> bindValue(":voice",$RecordingSid, PDO::PARAM_INT);
 			$stmt -> bindValue(":CallSid",$CallSid, PDO::PARAM_INT);
+			$stmt -> execute();
+		}
+		public function set_memo($id,$memo){
+			$sql = sprintf("UPDATE %s SET status_memo=2, memo=:memo WHERE id=:id",$this->table_name);
+			$stmt = $this->db -> prepare($sql);
+			$stmt -> bindValue(":memo",$memo, PDO::PARAM_STR);
+			$stmt -> bindValue(":id",$id, PDO::PARAM_INT);
 			$stmt -> execute();
 		}
 		

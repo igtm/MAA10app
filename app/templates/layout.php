@@ -15,6 +15,7 @@
   src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>
 <script type="text/javascript"
   src="/API/MAA10app/app/styles/jquery.ui.touch-punch.min.js"></script>
+
 <script type="text/javascript">
 $(function() {
   $('.Voices_lists').sortable({ change : function( evt, ui ) { 
@@ -145,17 +146,10 @@ $(function() {
 			}else{
 				alert(data['error']);
 			}
-			//alert("成功");
-			//alert(data);
-			//alert(status);
-			//alert(xhr);
 		  }).fail(function(xhr, status, error) {
 			 // 通信失敗時の処理
 	 	  $("#Loading").hide();
 			alert("失敗");
-			alert(xhr);
-			alert(status);
-			alert(error);
 		  }).always(function(arg1, status, arg2) {
 			// 通信完了時の処理
 		  });
@@ -225,12 +219,65 @@ $(function() {
 		}
 	 	$("#SetPhrase_box").slideToggle();
 	 });
+	 
+	 $(".Project_delete").click(function(){
+		 if(confirm("プロジェクトを削除しますか？この操作は取り消せません。")){
+		$("#Loading").show();
+		$.ajax({
+			type:"POST",
+			dataType:"json",
+			url:"<?php echo ROOT_DIR."async/delete_project.php";?>",
+			data:{member_id:<?php if(empty($_SESSION['MA10_id'])){echo 'damy';}?><?php echo h($_SESSION['MA10_id']);?>,
+					project_id:<?php if(empty($project['id'])){echo 'damy';}?><?php echo h($project['id']);?>}
+			}).done(function(data, status, xhr) {
+				// 通信成功時の処理
+				if(data['status']){
+					location.href = "<?php echo ROOT_DIR;?>app/mypage";
+					
+				}else{
+				$("#Loading").hide();
+					alert(data['error']);
+				}
+			}).fail(function(xhr, status, error) {
+				// 通信失敗時の処理
+				$("#Loading").hide();
+				alert("通信エラー");
+			});
+			 
+		 }
+	});
+	
+	$(".Member_delete").click(function(){
+	if(confirm("アカウントを削除しますか？この操作は取り消せません。")){
+		if(<?php if(empty($_SESSION['MA10_id'])){echo 'damy';}?><?php echo h($_SESSION['MA10_id']);?>==27){alert("このアカウントは削除出来ません！");return;}
+		$("#Loading").show();
+		$.ajax({
+			type:"POST",
+			dataType:"json",
+			url:"<?php echo ROOT_DIR."async/delete_member.php";?>",
+			data:{member_id:<?php if(empty($_SESSION['MA10_id'])){echo 'damy';}?><?php echo h($_SESSION['MA10_id']);?>}
+			}).done(function(data, status, xhr) {
+				// 通信成功時の処理
+				if(data['status']){
+					location.href = "<?php echo ROOT_DIR;?>app/";
+					
+				}else{
+					$("#Loading").hide();
+					alert(data['error']);
+				}
+			}).fail(function(xhr, status, error) {
+				// 通信失敗時の処理
+				$("#Loading").hide();
+				alert("通信エラー");
+			});
+	}
+	});
 });
 </script>
 <title><?php echo $title;?></title>
 </head>
 <body>
-	<header>
+	<div class="header">
     	<ul class="Nav">
         	<li class="Nav_item"><a href="/API/MAA10app/app">Home</a></li>
 			<?php if($isLogin){?>
@@ -241,13 +288,14 @@ $(function() {
                 <li class="Nav_item Nav_item-right"><a href="/API/MAA10app/app/signup">サインアップ</a></li>
             <?php }?>
         </ul>
-    </header>
+    </div>
 	<div class="Container">
 		<?php echo $content;?>
 	</div>
-    <div id="Loading" style="display:none;">
-    	<div id="Loading_mask"></div>
-        <span id="Loading_icon"><i class="fa fa-spinner fa-spin"></i></span>
-    </div>
+    <div class="footer">Copyright © 2014 VoiceHub All Right Reserve</div>
+        <div id="Loading" style="display:none;">
+            <div id="Loading_mask"></div>
+            <span id="Loading_icon"><i class="fa fa-spinner fa-spin"></i></span>
+        </div>
 </body>
 </html>

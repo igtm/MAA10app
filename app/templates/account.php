@@ -19,6 +19,7 @@
 <td><?php echo "：".h($member['email']);?></td>
 </tr>
 </table>
+<p class="Member_delete">削除</p>
 </div>
 <?php $content = ob_get_clean();?>
 <?php include 'layout.php';?>

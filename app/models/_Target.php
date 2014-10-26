@@ -23,5 +23,10 @@ class Target extends ModelBase{
 			$target_id = $result['LAST_INSERT_ID()'];
 			return $target_id;
 		}
+/* ------- DELETE DATA --------- */
+		public function delete_target($id){
+			$params = array("id"=>$this->id);
+			$this->delete($params);			
+		}
 }
 ?>

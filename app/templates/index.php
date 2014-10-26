@@ -13,8 +13,8 @@
 <script type="text/javascript"
   src="/API/MAA10app/app/styles/jquery.ui.touch-punch.min.js"></script>
 <script type="text/javascript">
-$(function() {
-});
+
+	
 </script>
 </head>
 
@@ -23,11 +23,12 @@ $(function() {
     <div class="Home_mask"></div>
     <div class="Home_title"><img src="images/logo4.png"/></div>
         <div class="Home_box">
-        これは「みんなの声を電話を使って簡単に集められる」サービスです。<br>
-                        「集められた音声を、電話で届ける」こともできます。<br>
+        これは「みんなの声を、電話で簡単に収集できる」サービスです。<br>
+                        「集められた音声を編集、指定時刻に電話で届ける」こともできます。<br>
                         お誕生日を迎えた人へ「おめでとう」を<br>
                         直接は会えないけど励ましたい人へ「がんばれ」を<br>
                         卒業式・別れのシーンで大切な人へ「今までありがとう」を<br>
+                        様々なシーンでお使いいただけます。<br>
         </div>
         <div class="Home_login">
             <?php require '_loginBlock.php';?>

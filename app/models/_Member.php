@@ -53,5 +53,15 @@ class Member extends ModelBase{
 			$return = $this->select("*",$params);
 			return $return[0];
 		}
+		public function is_member(){
+			$params = array("id"=>$this->id);
+			$return = $this->select("*",$params);
+			if(!empty($return)){return true;}else{return false;}
+		}
+/* ------- DELETE DATA --------- */
+		public function delete_member(){
+			$params = array("id"=>$this->id);
+			$this->delete($params);			
+		}
 }
 ?>

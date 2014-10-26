@@ -58,6 +58,11 @@
 				return true;
 			}else{return false;}
 		}
+		public function get_target_idWithMember($member_id){
+			$params = array("member_id"=>$member_id);
+			$return = $this->select("id,target_id",$params);
+			return $return;
+		}
 		
 /* ------- SET DATA --------- */
 
@@ -139,6 +144,18 @@
 			$stmt -> bindValue(":project_id",$this->id, PDO::PARAM_INT);
 			$stmt -> execute();
 		}
+/* ------- DELETE DATA --------- */
+		public function delete_project(){
+			$params = array("id"=>$this->id);
+			$this->delete($params);			
+		}
+		public function delete_projectWithMember($member_id){
+			$params = array("member_id"=>$member_id);
+			$this->delete($params);			
+		}
+		
+		
+		
 /* ------- private --------- */
 		
 		// get_voices
