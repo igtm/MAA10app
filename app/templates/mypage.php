@@ -33,19 +33,19 @@
         <input type="hidden" id="Tab_hidden_recordtime" name="recordtime"/>
         <input type="hidden" id="Tab_hidden_original_content" name="original_content"/>
             <li>
-            <p class="Tab_infoText">・「お誕生日、おめでとう。」の一言のみを届ける、シンプルなプロジェクトです。<br>・録音３秒以内/人</p>
+            <p class="Tab_infoText">・「お誕生日、おめでとう。」の一言のみを届ける、シンプルなプロジェクトです。<br>・録音５秒以内/人</p>
             <input type="text" name="" class="Tab_input" data-scene="1" placeholder="プロジェクト名" maxlength="32" required />
-            <button class="Tab_button" data-scene="1" data-recordtime="3">作成</button>
+            <button class="Tab_button" data-scene="1" data-recordtime="5">作成</button>
             </li>
             <li class="Tab_hide">
-            <p class="Tab_infoText">・みんなの応援の言葉を届けよう<br>・録音５秒以内/人</p>
+            <p class="Tab_infoText">・みんなの応援の言葉を届けよう<br>・録音８秒以内/人</p>
             <input type="text" name="" class="Tab_input" data-scene="2" placeholder="プロジェクト名" maxlength="32" required/>
-            <button class="Tab_button" data-scene="2" data-recordtime="5">作成</button>
+            <button class="Tab_button" data-scene="2" data-recordtime="8">作成</button>
             </li>
             <li class="Tab_hide">
-            <p class="Tab_infoText">・みんなの言葉を届けよう<br>・録音１０秒以内/人</p>
+            <p class="Tab_infoText">・みんなの言葉を届けよう<br>・録音１５秒以内/人</p>
             <input type="text" name="" class="Tab_input" data-scene="3" placeholder="プロジェクト名" maxlength="32" required />
-            <button class="Tab_button" data-scene="3" data-recordtime="10">作成</button>
+            <button class="Tab_button" data-scene="3" data-recordtime="15">作成</button>
             </li>
             <li class="Tab_hide">
             <p class="Tab_infoText">・録音

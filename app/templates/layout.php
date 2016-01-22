@@ -84,6 +84,7 @@ $(function() {
 	$("#dialog-execute").click(function() {
 		var send_time = $("#datetime").val();
 		var phone = $("#phone").val();
+		phone = phone.replace(/-/g,"");
 		if(send_time && phone){
 		if(confirm("指定された番号に、指定時刻に入電します。")){
 			$("#Loading").show();
@@ -178,6 +179,8 @@ $(function() {
   // POST: project_name , scene , recordtime, (original_content)
     $('.Tab_button').click(function(e) {
 		e.preventDefault();
+		var sceneArray = [<?php echo '"'.INBOUND_BIRTHDAY.'",'.'"'.INBOUND_CHEERUP.'",'.'"'.INBOUND_FAREWELL.'",';?>];
+
 		var scene = $(this).attr("data-scene");
 		var project_name = $(".Tab_input[data-scene="+scene+"]").val();
 		if(project_name == ''){alert("プロジェクト名が記入されていません。");
@@ -195,11 +198,13 @@ $(function() {
 			var original_content = $("#original_content").val();
 		}else{
 			var recordtime = $(this).attr("data-recordtime");
+			var i = scene - 1;
+			var original_content = sceneArray[i];
 		}
 		$("#Tab_hidden_project_name").val(project_name);
 		$("#Tab_hidden_scene").val(scene);
 		$("#Tab_hidden_recordtime").val(recordtime);
-		if(scene == 10){$("#Tab_hidden_original_content").val(original_content);}
+		$("#Tab_hidden_original_content").val(original_content);
 	    $("form").submit();
 	});
 	  // enterの無効化
@@ -292,7 +297,6 @@ $(function() {
 	<div class="Container">
 		<?php echo $content;?>
 	</div>
-    <div class="footer">Copyright © 2014 VoiceHub All Right Reserve</div>
         <div id="Loading" style="display:none;">
             <div id="Loading_mask"></div>
             <span id="Loading_icon"><i class="fa fa-spinner fa-spin"></i></span>

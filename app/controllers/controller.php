@@ -184,6 +184,9 @@ function account($app){
 //logout
 function logout($app){
 	$_SESSION = array();
+	if (isset($_COOKIE["PHPSESSID"])) {
+        setcookie("PHPSESSID", '', time() - 1800, '/');
+    }
 	session_destroy();
 	$app -> redirect(ROOT_DIR."app/");
 

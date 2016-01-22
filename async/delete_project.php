@@ -8,8 +8,8 @@ $Voice = new Voice();
 
 //そのメンバーとそのプロジェクトが一致するか
 if($Project->is_ownProject($member_id)){
-	$Project->delete_project();
 	$project = $Project->get_projectDetail();
+	$Project->delete_project();
 	$table = $Voice->get_voices($project_id);
 	if(!empty($table)){
 		$Voice->delete_voices($project_id);
